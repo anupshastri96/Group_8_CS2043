@@ -11,33 +11,25 @@ public class MainDriver {
 	public static void main(String[] args) throws IOException {
 		
 		Scanner userInput = new Scanner(System.in);
-		System.out.println("Enter your First Name: ");
-		String fName = userInput.next();
+		//Set Up New User -> call create user Method
+		//using WorkID to identify a librarian
+		User user = new User(null);
+		user = user.createUser(userInput);		
 		
-		System.out.println("Enter your Last Name: ");
-		String lName = userInput.next();
+		//Temporary password and username
+		//Login -> return user or check tempUser list for librarian
 		
-		String name = fName + " " + lName;
-	
-		User newUser = new User(name);
-		System.out.println("Enter work identification number: ");
-		int workID = userInput.nextInt();
-				
-		File file = new File("librarianWorkIDList.txt");		
-		BufferedReader r = new BufferedReader(new FileReader(file));
-		String line = r.readLine();
+		System.out.println("User Name: ");
+		String varName = userInput.next();
 		
-		while (line != null) {
-			if (line.equals(lName + ", " + fName + " " + workID)) { 
-				newUser.setIsLibrarian(); 
-				System.out.println(newUser);
-			}
-			line = r.readLine(); 
-		}
-	
-		System.out.println(newUser);
+		System.out.println("Password: ");
+		String varPassword = userInput.next();
+		
+		
+		User tempUser = new User(null);
+		tempUser = tempUser.userLogIn(userInput, varName, varPassword);
+		
 		userInput.close();
-		r.close();
 	}
 
 }
