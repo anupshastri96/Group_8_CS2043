@@ -1,10 +1,11 @@
+
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
 public class Login extends JFrame implements ItemListener, ActionListener{
 	static JFrame f;
-	static JLabel 1, 11, 13;
+	static JLabel a, b, c;
 	static JComboBox c1, c2;
 	
 	public static void main(String[] args){
@@ -27,22 +28,23 @@ public class Login extends JFrame implements ItemListener, ActionListener{
 		login.addActionListener(s);
 		c1.addItemListener(s);
 		
-		1 = new JLabel("Select your login");
-		11 = new JLabel("Enter username");
-		13 = new JLabel("Enter password");
+		a = new JLabel("Select your login");
+		b = new JLabel("Enter username");
+		c = new JLabel("Enter password");
 		
-		1.setForeground(Color.blue);
-		11.setForeground(Color.black);
-		13.setForeground(Color.black);
+		a.setForeground(Color.blue);
+		b.setForeground(Color.black);
+		c.setForeground(Color.black);
 		
 		JPanel p = new JPanel();
-		p.add(1);
+		p.add(a);
 	
 		p.add(c1);	
-		p.add(11);
+		p.add(b);
 		p.add(userName);
-		p.add(13);
+		p.add(c);
 		p.add(pasword);
+		
 		for(int i = 0; i<s1.length(); i++){
 			if(s1[i] == 0){
 				p.add(login);
@@ -51,6 +53,9 @@ public class Login extends JFrame implements ItemListener, ActionListener{
 				p.add(login2);
 			}
 		}
+		
+		p.add("Create new user");
+		
 		p.add(cancel);
 		
 		f.setLayout(new FlowLayout());
@@ -58,7 +63,7 @@ public class Login extends JFrame implements ItemListener, ActionListener{
 		f.setSize(700, 200);
 		f.show();
 		
-		blic void actionPreformed(ActionEvent e){
+		public void actionPreformed(ActionEvent e){
 			String s = e.getActionCommand();
 			
 			if(s.equals("Login")){
