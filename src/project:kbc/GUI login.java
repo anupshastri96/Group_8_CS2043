@@ -22,7 +22,7 @@ public class Login extends JFrame implements ItemListener, ActionListener{
 		
 		JButton login = new JButton("Login");
 		JButton login2 = new JButton("Login");
-		JButton cancel = new JButton("Cancel")
+		JButton  createUser = new JButton("Create new user");
 		
 		login.addActionListener(s);
 		c1.addItemListener(s);
@@ -64,11 +64,15 @@ public class Login extends JFrame implements ItemListener, ActionListener{
 			if(s.equals("Login")){
 				// here we would connect the user/librarian login stuff
 			}
-			else{
-				// cancel action
+			else if(s.equals("Create new user")){
+				//here we would have the stuff to make the new user
 			}
-		} 
+			else{
+				//cancel action
+			}
+		}
+	} 
 	
-	}
-		
 }
+		
+
