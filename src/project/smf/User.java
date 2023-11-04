@@ -32,7 +32,7 @@ public class User {
 		userID++;
 	}
 	
-	public void setIsLibrarian() {
+	private void setIsLibrarian() {
 		isLibrarian = true;
 	}
 	
@@ -73,7 +73,7 @@ public class User {
 		File tempFile = new File("TempUser.txt");		
 		BufferedReader tempR = new BufferedReader(new FileReader(tempFile));
 		String tempLine = tempR.readLine();
-
+		
 		while (tempLine != null) {
 			if (tempLine.equals(userName + " " + password)) { 
 				//call create user method		
@@ -84,7 +84,7 @@ public class User {
 			}
 			tempLine = tempR.readLine();
 			//if(tempUser = !found in UserList or librarian List)
-			System.out.println("user is not in Librarian List");
+			//System.out.println("temp password not valid");
 			//else{
 			//user not found -> prompt : go to create a new user 
 		}
@@ -94,7 +94,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return String.format("%s%s",name,isLibrarian);
+		return String.format("%s %s %d",name,isLibrarian,USERID);
 	}
 
 }
