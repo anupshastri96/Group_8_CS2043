@@ -5,7 +5,8 @@ Created By: Sarah Flynn
 Class that creates a librarian.
 Functions:
 	createLibrarian()
-	returnBook()
+	removeRecord()
+	checkTempLibList()
 **/
 
 package project;

@@ -5,11 +5,16 @@ Created By: Sarah Flynn
 Abstract class for a user a librarian or a patron.
 Functions:
 	userLogIn()
-	removeRecord()
-	checkTempLibList()
 	findUsername()
 	getUserName()
+	getName()
+	getPhone()
 	validate()
+	updateUsername()
+	updateName()
+	updatePassword()
+	updateAddress()
+	updatePhone()
 **/
 
 package project;
@@ -63,7 +68,15 @@ public abstract class User {
 	public String getUsername(){
 		return userName;
 	}
-		
+	
+	public String getName(){
+		return name;
+	}
+	
+	public int getPhone() {
+		return phone;
+	}
+			
 	public static void updateUsername(User toChange, String newUsername){
 		toChange.userName = newUsername;
 	}
