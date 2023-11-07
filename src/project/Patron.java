@@ -11,13 +11,11 @@ package project;
 
 public class Patron extends User{
 	
-	public Patron(String name, String userName, String pw) /* String address, String userName, String password, int phone */ {
-		super(name, userName, pw);
-		//this.address = address;
-		//this.phone = phone;
+	public Patron(String name, String userName, String pw, String address, int phone) {
+		super(name, userName, pw, address, phone);
 	}
 	
-	public User createPatron(String fName, String lName, String userName, String pw) {
+	public User createPatron(String fName, String lName, String userName, String pw, String address, int phone) {
 //		this first check will need to be done before the information is passed to create		
 //		while(!USER_LIST.findUserName(userName)) {
 //			System.out.println("Username already exits create a unique username:");
@@ -25,7 +23,7 @@ public class Patron extends User{
 //		}
 		
 		String name = fName + " " + lName;
-		Patron newUser = new Patron(name, userName, pw);
+		Patron newUser = new Patron(name, userName, pw, address, phone);
 		//add to userList
 		return newUser;
 	}

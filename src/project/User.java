@@ -22,20 +22,20 @@ public abstract class User {
 	private String name;
 	private String userName;
 	private String password;
-	//private String address;
-	//private int phone;
+	private String address;
+	private int phone;
 	
-	public User(String name, String userName, String pw)/* String address, int phone */{
+	public User(String name, String userName, String pw, String address, int phone) {
 		this.name = name;
 		this.userName = name;
 		password = pw;
-		//this.address = address;
-		//this.phone = phone;
+		this.address = address;
+		this.phone = phone;
 	}
 	
 	public static User userLogIn(String userIn, String pw) throws IOException{
 		
-		User userFound = new Patron(null, null,null); //USER_LIST.findUserName(userIn);
+		User userFound = new Patron(null, null,null, null, 0); //USER_LIST.findUserName(userIn);
 		if(userFound.validate(userIn, pw)) {
 			return userFound;
 		}
@@ -49,8 +49,6 @@ public abstract class User {
 		return null;
 	}
 	
-	
-	
 //	protected User findUsername(String username){
 //		Iterator<User> userExist = USER_LIST.iterator();
 //		while(userExist.hasNext()) {
@@ -62,11 +60,31 @@ public abstract class User {
 //		return null;
 //	}
 	
-	public String getUserName(){
+	public String getUsername(){
 		return userName;
 	}
+		
+	public static void updateUsername(User toChange, String newUsername){
+		toChange.userName = newUsername;
+	}
 	
-	public boolean validate(String userIn, String pw){
+	public static void updateName(User toChange, String newName){
+		toChange.name = newName;
+	}
+	
+	public static void updateAddress(User toChange, String newAddress){
+		toChange.address = newAddress;
+	}
+	
+	public static void updatePhone(User toChange, int newPhone){
+		toChange.phone = newPhone;
+	}
+	
+	public static void updatePassword(User toChange, String newPW) {
+		toChange.password = newPW;
+	}
+	
+	protected boolean validate(String userIn, String pw){
 		boolean validated = false;
 		if(userIn.equals(userName) && pw.equals(password)) {
 			validated = true;
@@ -77,8 +95,9 @@ public abstract class User {
 		return validated;
 	}
 	
+	
 	@Override
 	public String toString() {
-		return String.format("%s %s",userName, name, password);
+		return String.format("%s %s %s (%d)",userName, name, address, phone);
 	}
 }

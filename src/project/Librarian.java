@@ -20,35 +20,33 @@ import java.io.PrintWriter;
 
 public class Librarian extends User {
 			
-	public Librarian(String name, String userName, String pw) /* String address, String userName, String password, int phone */ {
-		super(name, userName, pw);
-		//this.address = address;
-		//this.phone = phone;
+	public Librarian(String name, String userName, String pw, String address, int phone) {
+		super(name, userName, pw, address, phone);
 	}
 	
-	public Librarian createLibrarian(String name, String userName, String pw){
+	public Librarian createLibrarian(String name, String userName, String pw, String address, int phone){
 		//parse string into name/userName/pw/phone number
 //		this first check will need to be done before the information is passed to create		
 //		while(!USER_LIST.findUserName(userName)) {
 //			System.out.println("Username already exits create a unique username:");
 //			return;
 //		}
-		Librarian newUser = new Librarian(name, userName, pw);
+		Librarian newUser = new Librarian(name, userName, pw, address, phone);
 		//add to userList
 		return newUser;
 	}
 	
-	private static void removeRecord(String libUserFile, String tempLine)throws IOException {
-		String temp = "temp.txt";
+	public static void removeRecord(String libUserFile, String tempLine)throws IOException {
+		String temp = "temp";
 		File prevFile = new File(libUserFile);
 		File newFile = new File(temp);
-		
+
 		String currentLine;
-	
-		FileWriter fw = new FileWriter(temp, true);
+		
+		FileWriter fw = new FileWriter(newFile, true);
 		BufferedWriter bw = new BufferedWriter(fw);
 		PrintWriter pw = new PrintWriter(bw);
-	
+		
 		FileReader fr = new FileReader(libUserFile);
 		BufferedReader br = new BufferedReader(fr);
 	
@@ -56,31 +54,34 @@ public class Librarian extends User {
 			if (currentLine.equals(tempLine)) {
 				currentLine = br.readLine();
 			}
-			pw.println(currentLine);
-			
+			if(currentLine != null) {
+				pw.println(currentLine);
+				System.out.println(currentLine);
+		
+			}
 		}
-		pw.flush();
-		pw.close();
-		fr.close();
 		br.close();
-		bw.close();
-		fw.close();
+		pw.close();
+		
 		
 		prevFile.delete();
 		File dump = new File(libUserFile);
 		newFile.renameTo(dump);	
+	
 	}
 	
 	public static Librarian checkTempLibList(String user, String pw) throws IOException {
-		File tempFile = new File("TempUser");		
-		BufferedReader tempR = new BufferedReader(new FileReader(tempFile));
-		String tempLine = tempR.readLine();
+		File tempFile = new File("TempUserTest");
+		FileReader reader = new FileReader(tempFile);
+		BufferedReader tempR = new BufferedReader(reader);
+		String tempLine;
 		
-		while (tempLine != null) {
+		while ((tempLine = tempR.readLine()) != null ) {
 			if (tempLine.equals(user + " " + pw)) {
-				Librarian newLib = new Librarian(null,null,null);//call input screen for new user
-				removeRecord("TempUser", tempLine);
+				System.out.println("List user found: " + user);
+				Librarian newLib = new Librarian(null,null,null,null,0);//call input screen for new user
 				tempR.close();
+				removeRecord("TempUserTest", tempLine);
 				return newLib;
 			}
 			tempLine = tempR.readLine();
