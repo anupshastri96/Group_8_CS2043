@@ -37,7 +37,7 @@ public class Librarian extends User {
 		return newUser;
 	}
 	
-	public static void removeRecord(String libUserFile, String tempLine)throws IOException {
+	private static void removeRecord(String libUserFile, String tempLine)throws IOException {
 		String temp = "temp";
 		File prevFile = new File(libUserFile);
 		File newFile = new File(temp);
@@ -56,9 +56,7 @@ public class Librarian extends User {
 				currentLine = br.readLine();
 			}
 			if(currentLine != null) {
-				pw.println(currentLine);
-				System.out.println(currentLine);
-		
+				pw.println(currentLine);		
 			}
 		}
 		br.close();
@@ -79,7 +77,6 @@ public class Librarian extends User {
 		
 		while ((tempLine = tempR.readLine()) != null ) {
 			if (tempLine.equals(user + " " + pw)) {
-				System.out.println("List user found: " + user);
 				Librarian newLib = new Librarian(null,null,null,null,0);//call input screen for new user
 				tempR.close();
 				removeRecord("TempUserTest", tempLine);
