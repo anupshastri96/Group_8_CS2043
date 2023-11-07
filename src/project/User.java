@@ -5,16 +5,17 @@ Created By: Sarah Flynn
 Abstract class for a user a librarian or a patron.
 Functions:
 	userLogIn()
-	userExists()
+	removeRecord()
+	checkTempLibList()
+	findUsername()
+	getUserName()
+	validate()
 **/
 
-package project.smf;
+package project;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
+//import java.util.Iterator;
 
 public abstract class User {
 	
@@ -32,30 +33,48 @@ public abstract class User {
 		//this.phone = phone;
 	}
 	
-	public static void userLogIn(Scanner userInput, String userName, String password) throws IOException{
-		//getUser fromList + go to MainMenu
-		//if User not found ->
-		File tempFile = new File("TempUser.txt");		
-		BufferedReader tempR = new BufferedReader(new FileReader(tempFile));
-		String tempLine = tempR.readLine();
+	public static User userLogIn(String userIn, String pw) throws IOException{
 		
-		while (tempLine != null) {
-			if (tempLine.equals(userName + " " + password)) { 	
-				Librarian newLib = new Librarian(null, null, null);
-				newLib.createLibrarian(userInput);
-				System.out.println(newLib);
-				//remove temporary userName and password fromfile
-			}
-			tempLine = tempR.readLine();
-			//if(tempUser = !found in UserList or librarian List)
-			//System.out.println("temp password not valid");
-			//else{
-			//user not found -> prompt : go to create a new user 
-			Patron newUser = new Patron(null, null, null);
-			newUser.createPatron(userInput);
-			System.out.println(newUser);
+		User userFound = new Patron(null, null,null); //USER_LIST.findUserName(userIn);
+		if(userFound.validate(userIn, pw)) {
+			return userFound;
 		}
-		tempR.close();
+		else if(!userFound.validate(userIn, pw)) {
+			Librarian newLib = Librarian.checkTempLibList(userIn, pw);
+			if(newLib != null) {
+				return newLib;
+			}
+			System.out.println("user name or password not valid");
+		}
+		return null;
+	}
+	
+	
+	
+//	protected User findUsername(String username){
+//		Iterator<User> userExist = USER_LIST.iterator();
+//		while(userExist.hasNext()) {
+//    		User userInList = userExist.next();
+//    		if (userInList.getUserName().equals(username)) {
+//        		return userInList;
+//    		}
+//		}
+//		return null;
+//	}
+	
+	public String getUserName(){
+		return userName;
+	}
+	
+	public boolean validate(String userIn, String pw){
+		boolean validated = false;
+		if(userIn.equals(userName) && pw.equals(password)) {
+			validated = true;
+		}
+		else if(!userIn.equals(userName) || !pw.equals(password)){
+			validated = false;
+		}
+		return validated;
 	}
 	
 	@Override

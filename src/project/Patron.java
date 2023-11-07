@@ -7,10 +7,7 @@ Functions:
 	createPatron()
 **/
 
-package project.smf;
-
-import java.io.IOException;
-import java.util.Scanner;
+package project;
 
 public class Patron extends User{
 	
@@ -20,20 +17,16 @@ public class Patron extends User{
 		//this.phone = phone;
 	}
 	
-	public void createPatron(Scanner userInput)throws IOException {
-		System.out.println("Create a username: ");
-		String userName = userInput.next();
-		//check for unique userName - userList();
-		System.out.println("Create a password: ");
-		String pw = userInput.next();
-		System.out.println("Enter your First Name: ");
-		String fName = userInput.next();
-		System.out.println("Enter your Last Name: ");
-		String lName = userInput.next();
-	
+	public User createPatron(String fName, String lName, String userName, String pw) {
+//		this first check will need to be done before the information is passed to create		
+//		while(!USER_LIST.findUserName(userName)) {
+//			System.out.println("Username already exits create a unique username:");
+//			return;
+//		}
+		
 		String name = fName + " " + lName;
 		Patron newUser = new Patron(name, userName, pw);
 		//add to userList
-		System.out.println(newUser);
+		return newUser;
 	}
 }
