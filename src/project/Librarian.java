@@ -65,8 +65,7 @@ public class Librarian extends User {
 		
 		prevFile.delete();
 		File dump = new File(libUserFile);
-		newFile.renameTo(dump);	
-	
+		newFile.renameTo(dump);
 	}
 	
 	public static Librarian checkTempLibList(String user, String pw) throws IOException {
@@ -77,7 +76,8 @@ public class Librarian extends User {
 		
 		while ((tempLine = tempR.readLine()) != null ) {
 			if (tempLine.equals(user + " " + pw)) {
-				Librarian newLib = new Librarian(null,null,null,null,0);//call input screen for new user
+				Librarian newLib = new Librarian("RRLib","temp","test","test",0);//call input screen for new user
+				//add to user list
 				tempR.close();
 				removeRecord("TempUserTest", tempLine);
 				return newLib;
