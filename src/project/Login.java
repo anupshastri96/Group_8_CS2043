@@ -1,3 +1,5 @@
+package project;
+
 import javafx.application.Application;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
@@ -20,20 +22,22 @@ public class Login extends Application{
 		primaryStage.setTitle("Login Page");
 		
 		Button userLoginButton = new Button("User Login");
-		Button librarianLoginButton = new Button("Librarian Login");
+		//Button librarianLoginButton = new Button("Librarian Login");
 		Button newUserButton = new Button("Create New User");
 		userLoginButton.setOnAction(e -> primaryStage.setScene(scene2));
-		librarianLoginButton.setOnAction(e -> primaryStage.setScene(scene2));
+		//librarianLoginButton.setOnAction(e -> primaryStage.setScene(scene2));
 		newUserButton.setOnAction(e -> primaryStage.setScene(scene3));
 		VBox layout1 = new VBox(20);
 		layout1.setAlignment(Pos.CENTER);
-		layout1.getChildren().addAll(userLoginButton, librarianLoginButton, newUserButton);
+		layout1.getChildren().addAll(userLoginButton, /*librarianLoginButton*/, newUserButton);
 		scene1 = new Scene(layout1, 300, 250);
         
 		Label usernameLabel = new Label("Enter User Name");
 		usernameField = new TextField();
 		Label passwordLabel = new Label("Enter Password");
 		passwordField = new TextField();
+		Button loginButton = new Button("Login");
+		loginButton.setOnAction(e -> primaryStage.setScene(scene4))
 		VBox layout2 = new VBox(20);
 		layout2.setAlignment(Pos.CENTER);
 		layout2.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField);
@@ -76,6 +80,7 @@ public class Login extends Application{
 		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField);
 		scene3 = new Scene(layout3, 450, 700);
 		
+
 		primaryStage.setScene(scene1);
 		primaryStage.show();
 	}
