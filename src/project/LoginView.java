@@ -15,7 +15,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.geometry.Pos;
 import javafx.event.ActionEvent;
 
-public class Login extends Application{
+public class LoginView extends Application{
 	Scene scene1,scene2,scene3;
 	private TextField usernameField, passwordField, nameField, streetField, cityField, postCodeField, phoneField, newUsernameField, newPasswordField, rePasswordField;
 	public void start(Stage primaryStage){
@@ -29,7 +29,7 @@ public class Login extends Application{
 		newUserButton.setOnAction(e -> primaryStage.setScene(scene3));
 		VBox layout1 = new VBox(20);
 		layout1.setAlignment(Pos.CENTER);
-		layout1.getChildren().addAll(userLoginButton, /*librarianLoginButton*/, newUserButton);
+		layout1.getChildren().addAll(userLoginButton /*librarianLoginButton*/, newUserButton);
 		scene1 = new Scene(layout1, 300, 250);
         
 		Label usernameLabel = new Label("Enter User Name");
@@ -37,7 +37,12 @@ public class Login extends Application{
 		Label passwordLabel = new Label("Enter Password");
 		passwordField = new TextField();
 		Button loginButton = new Button("Login");
-		loginButton.setOnAction(e -> primaryStage.setScene(scene4))
+        /*if(usernamefield.gettext() &&  passwordField.gettext() == user.getusername() && user.getpassword){ 
+			loginButton.setOnAction(e -> primaryStage.setScene(scene4));
+		}
+		if(usernamemfield.gettext() && passwordfield.gettext() == librarian.getusername && librarian.getpassword){
+			loginButton.setOnAction(e -> primaryStage.setScene(scene5));
+		}*/
 		VBox layout2 = new VBox(20);
 		layout2.setAlignment(Pos.CENTER);
 		layout2.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField);
@@ -75,11 +80,50 @@ public class Login extends Application{
 		newPasswordField = new TextField();
 		Label rePasswordLabel = new Label("Re-enter Password:");
 		rePasswordField = new TextField();
+		Button signUpButton = new Button("Sign up");
+		signUpButton.setOnAction(e -> primaryStage.setScene(scene2));
 		VBox layout3 = new VBox(20);
 		layout3.setAlignment(Pos.CENTER);
-		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField);
+		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, signUpButton);
 		scene3 = new Scene(layout3, 450, 700);
 		
+		Button checkoutButton = new Button("Check Out a Book");
+        checkoutButton.setOnAction(this::processCheckoutRequest);
+		Button ratingButton = newButton("Rate and Review a Book");
+		ratingButton.setOnAction(this::processRatingRequest);
+		Button currentCheckoutButton = new Button("Books Currently Checked Out");
+		currentCheckoutButton.setOnAction(this::processCurrentOutRequest);
+		Button reservedButton = new Button("Books Reserved");
+		reservedButton.setOnAction(this::processReservedRequest);
+		Button recomendedButton = new Button("Recomended Books");
+		recomendedButton.setOnAction(this::processRecomendedRequest);
+		Button editButton = new Button("Edit Profile");
+		editButton.setOnAction(e -> primaryStage.setScene(scene3));
+		VBox layout4 = new VBox(20);
+		layout4.setAlignment(Pos.CENTER);
+		layout4.getChildren().addAll(checkoutButton, ratingButton, currentCheckoutButton, reservedButton, recomendedButton, editButton);
+		scene4 = new Scene(layout4, 450, 700);
+
+		checkoutButton = new Button("Check Out a Book");
+		checkoutButton.setOnAction(this::processCheckoutRequest);
+		Button returnButton = new Button("Return a Book");
+		returnButton.setOnAction(this::processReturnRequest);
+		ratingButton = new Button("Rate and Review a Book");
+		ratingButton.setOnAction(this::processRatingRequest);
+		Button addButton = new Button("Add a Book to the Inventory");
+		addButton.setOnAction(this::processAddRequest);
+		Button removeButton = new Button("Remove a Book from Inventory");
+		removeButton.setOnAction(this::processRemoveRequest);
+		Button lookUpButton = new Button("Look Up a User");
+		lookUpButton.setOnAction(this::processLookUpRequest);
+		Button removeUserButton = new Button("Remove a User Profile");
+		removeUserButton.setOnAction(this::processRemoveUserRequest);
+		editButton = new Button("Edit Profile");
+		editButton.setOnAction(e -> primaryStage.setScene(scene3));
+		VBox layout5 = new VBox(20);
+		layout5.setAlignment(Pos.CENTER);
+		layout5.getChildren().addAll(checkoutButton,returnButton,ratingButton,addButton,removeButton,lookUpButton,removeUserButton,editButton);
+		scene5 = new Scene(layout5, 450, 700);
 
 		primaryStage.setScene(scene1);
 		primaryStage.show();
