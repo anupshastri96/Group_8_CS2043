@@ -1,5 +1,7 @@
 package project.controller;
 
+import project.model.Librarian;
+import project.model.Patron;
 import project.model.User;
 import project.views.UserLoginView;
 import project.views.UserSelectView;
@@ -11,23 +13,30 @@ public class UserLoginController {
     private static User model;
     private static UserLoginView view;
     
-    public static void login(String usernameField, String passwordField) {
+    public static void login(String usernameField, String passwordField, Stage stage) {
     	
     	try {
 			model = User.userLogIn(usernameField, passwordField);
+			if (model == null) {
+				userSelect(stage);
+			}
+			else if (model instanceof Librarian) {
+				//go to librarian main menu
+			}
+			else if (model instanceof Patron) {
+				//go to Patron main menu
+			}
 		} catch (IOException e) {
-			System.out.println("Username and password inccorrect");
 			e.printStackTrace();
 		}
     	System.out.println(model);
-    	//user returned call next screen
     }
     
     public static void selectLogIn(Stage stage){
     	UserLoginView.userLoginView(stage);
     }
     
-    public static void userSelectView(Stage stage) {
+    public static void userSelect(Stage stage) {
     	UserSelectView.userSelectView(stage);
     }
 

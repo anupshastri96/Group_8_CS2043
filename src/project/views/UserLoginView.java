@@ -1,5 +1,6 @@
 package project.views;
 
+import project.controller.UserLoginController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -7,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import project.controller.UserLoginController;
 
 public class UserLoginView{
 	static Scene scene2;
@@ -25,9 +25,8 @@ public class UserLoginView{
 	    String user = usernameField.getText(); 
 	    String pw = passwordField.getText();
 	    
-		loginButton.setOnAction(e -> UserLoginController.login(user, pw));//After login send to controller -> scene4
-	    
-	    
+		loginButton.setOnAction(e -> UserLoginController.login(user, pw, stage));//After login send to controller -> scene4
+	    	    
 		VBox layout2 = new VBox(20);
 		layout2.setAlignment(Pos.CENTER);
 		layout2.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField, loginButton);

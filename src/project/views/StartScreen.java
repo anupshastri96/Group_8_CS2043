@@ -9,7 +9,7 @@ public class StartScreen extends Application{
 	@Override
 	public void start(final Stage primaryStage){
 				
-		UserLoginController.userSelectView(primaryStage);
+		UserLoginController.userSelect(primaryStage);
 	}
 	
 	public static void main(String args[]){
