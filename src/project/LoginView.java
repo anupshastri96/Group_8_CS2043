@@ -11,7 +11,6 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
-import javafx.scene.layout.FlowPane;
 import javafx.geometry.Pos;
 import javafx.event.ActionEvent;
 
@@ -37,6 +36,7 @@ public class LoginView extends Application{
 		Label passwordLabel = new Label("Enter Password");
 		passwordField = new TextField();
 		Button loginButton = new Button("Login");
+		loginButton.setOnAction(this::processLoginRequest);
         /*if(usernamefield.gettext() &&  passwordField.gettext() == user.getusername() && user.getpassword){ 
 			loginButton.setOnAction(e -> primaryStage.setScene(scene4));
 		}
@@ -81,6 +81,7 @@ public class LoginView extends Application{
 		Label rePasswordLabel = new Label("Re-enter Password:");
 		rePasswordField = new TextField();
 		Button signUpButton = new Button("Sign up");
+		signUpButton.setOnAction(this::processSignUpRequest);
 		signUpButton.setOnAction(e -> primaryStage.setScene(scene2));
 		VBox layout3 = new VBox(20);
 		layout3.setAlignment(Pos.CENTER);
@@ -128,7 +129,51 @@ public class LoginView extends Application{
 		primaryStage.setScene(scene1);
 		primaryStage.show();
 	}
-	
-	public static void main(String args[]){
-		launch(args);
+    public void processLoginRequest(ActionEvent event){
+
+	}
+
+	public void processSignUpRequest(ActionEvent event){
+
+	}
+
+	public void processCheckoutRequest(ActionEvent event){
+
+	}
+
+	public void processRatingRequest(ActionEvent event){
+
+	}
+
+	public void processCurrentOutRequest(ActionEvent event){
+
+	}
+
+	public void processReservedRequest(ActionEvent event){
+
+	}
+
+	public void processRecomendedRequest(ActionEvent event){
+
+	}
+
+	public void processReturnRequest(ActionEvent event){
+
+	}
+
+	public void processAddRequest(ActionEvent event){
+
+	}
+
+	public void processRemoveRequest(ActionEvent event){
+
+	}
+
+	public void processLookUpRequest(ActionEvent event){
+
+	}
+
+	public void processRemoveUserRequest(ActionEvent event){
+
+	}
 }
