@@ -1,5 +1,5 @@
 /**
-Module Name: UserSelectView
+Module Name: UserLoginView
 Date Created: 2023-11-10
 Created By: Kayla Chapman and Sarah Flynn
 Class that shows the login user interface

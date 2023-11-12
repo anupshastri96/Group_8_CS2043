@@ -1,5 +1,5 @@
 /**
-Module Name: StartScrenn
+Module Name: StartScreen
 Date Created: 2023-11-10
 Created By: Kayla Chapman and Sarah Flynn
 Class begins starts the application
