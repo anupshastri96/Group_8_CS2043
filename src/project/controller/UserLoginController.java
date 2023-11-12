@@ -2,8 +2,8 @@ package project.controller;
 
 import project.model.User;
 import project.views.UserLoginView;
+import project.views.UserSelectView;
 import java.io.IOException;
-
 import javafx.stage.Stage;
 
 public class UserLoginController {
@@ -25,6 +25,10 @@ public class UserLoginController {
     
     public static void selectLogIn(Stage stage){
     	UserLoginView.userLoginView(stage);
+    }
+    
+    public static void userSelectView(Stage stage) {
+    	UserSelectView.userSelectView(stage);
     }
 
 }
