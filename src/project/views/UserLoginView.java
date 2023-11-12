@@ -1,3 +1,12 @@
+/**
+Module Name: UserSelectView
+Date Created: 2023-11-10
+Created By: Kayla Chapman and Sarah Flynn
+Class that shows the login user interface
+Functions:
+	userLoginView()
+**/
+
 package project.views;
 
 import project.controller.UserLoginController;

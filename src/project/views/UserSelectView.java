@@ -1,3 +1,11 @@
+/**
+Module Name: UserSelectView
+Date Created: 2023-11-10
+Created By: Kayla Chapman and Sarah Flynn
+Class allows the user to select create a user or login.
+Functions:
+	userSelectView()
+**/
 package project.views;
 
 import project.controller.UserLoginController;

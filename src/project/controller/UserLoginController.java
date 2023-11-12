@@ -1,3 +1,14 @@
+/**
+Module Name: UserLoginController
+Date Created: 2023-11-10
+Created By: Sarah Flynn
+Class manages direction from UserLogin View and sends
+information to the User model.
+Functions:
+	login()
+	selectLogin()
+	userSelect()
+**/
 package project.controller;
 
 import project.model.Librarian;
