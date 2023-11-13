@@ -17,7 +17,7 @@ Functions:
 	updatePhone()
 **/
 
-package project;
+package project.model;
 
 import java.io.IOException;
 //import java.util.Iterator;

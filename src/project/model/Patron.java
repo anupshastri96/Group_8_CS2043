@@ -7,7 +7,7 @@ Functions:
 	createPatron()
 **/
 
-package project;
+package project.model;
 
 public class Patron extends User{
 	
