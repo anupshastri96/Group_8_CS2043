@@ -1,3 +1,12 @@
+/**
+Module Name: NewUserController
+Date Created: 2023-11-14
+Created By: Sarah Flynn
+Class manages give information from NewUserView to create a new user.
+Functions:
+	createUser()
+	goBackNewUserView()
+**/
 package project.controller;
 
 import javafx.stage.Stage;

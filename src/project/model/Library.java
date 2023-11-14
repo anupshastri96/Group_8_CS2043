@@ -1,3 +1,12 @@
+/**
+Module Name: Library
+Date Created: 2023-11-14
+Created By: Sarah Flynn
+Class represents a list of Users, Books in inventory, and Books on a wait list.
+Functions:
+	addUser()
+	findUsername()
+**/
 package project.model;
 
 import java.util.Iterator;
