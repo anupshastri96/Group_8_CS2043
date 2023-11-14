@@ -25,11 +25,11 @@ public class LibrarianMainMenuView{
 		checkoutButton = new Button("Check Out a Book");
 		checkoutButton.setOnAction(e -> CheckoutController.checkout(???)); 
 		Button returnButton = new Button("Return a Book");
-		returnButton.setOnAction(e -> ReturnController.return(???));// new controller
+		returnButton.setOnAction(e -> ReturnController.return(???)); // new controller
 		ratingButton = new Button("Rate and Review a Book");
 		ratingButton.setOnAction(e -> RatingController.rate(???));
 		Button addButton = new Button("Add a Book to the Inventory");
-		addButton.setOnAction(e -> AddBookController.add(???));//new controller
+		addButton.setOnAction(e -> AddBookController.add(???)); //new controller
 		Button removeButton = new Button("Remove a Book from Inventory");
 		removeButton.setOnAction(e -> RemoveBookController.removeBook(???)); //new controller
 		Button lookUpButton = new Button("Look Up a User");
