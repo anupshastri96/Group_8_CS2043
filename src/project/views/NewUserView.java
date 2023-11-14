@@ -57,8 +57,7 @@ public class NewUserView{
 		Label rePasswordLabel = new Label("Re-enter Password:");
 		rePasswordField = new TextField();
 		Button signUpButton = new Button("Sign up");
-		//signUpButton.setOnAction(this::processSignUpRequest);
-		signUpButton.setOnAction(e -> SignUpComtroller.signUp(scene)); //thi will have to be a new controller
+		signUpButton.setOnAction(e -> SignUpController.signUp(???)); //this will have to be a new controller
 		VBox layout3 = new VBox(20);
 		layout3.setAlignment(Pos.CENTER);
 		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, signUpButton);
