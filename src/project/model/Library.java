@@ -20,10 +20,10 @@ public class Library {
 	public Library() {}
 	
 	public static void addUser(User usertoAdd) {
-		if(findUsername(usertoAdd.getUsername())) {
+		if(!findUsername(usertoAdd.getUsername())) {
 			USER_LIST.add(usertoAdd);
 		}
-		else if(!findUsername(usertoAdd.getUsername())) {
+		else if(findUsername(usertoAdd.getUsername())) {
 			System.out.println("user already in list");
 		}
 	}
