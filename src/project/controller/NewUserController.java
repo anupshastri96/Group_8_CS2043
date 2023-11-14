@@ -2,7 +2,7 @@
 Module Name: NewUserController
 Date Created: 2023-11-14
 Created By: Sarah Flynn
-Class manages give information from NewUserView to create a new user.
+Class manages and gives information from NewUserView to create a new user.
 Functions:
 	createUser()
 	goBackNewUserView()
