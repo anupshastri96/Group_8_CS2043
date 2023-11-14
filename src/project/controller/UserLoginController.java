@@ -22,8 +22,7 @@ import javafx.stage.Stage;
 public class UserLoginController {
 
     private static User model;
-    private static UserLoginView view;
-    
+       
     public static void login(String usernameField, String passwordField, Stage stage) {
     	
     	try {

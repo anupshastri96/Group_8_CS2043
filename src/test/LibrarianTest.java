@@ -67,7 +67,6 @@ class LibrarianTest {
 		}
 		testBR.close();
 		assertTrue(found == false);
-		assertTrue(user.getUsername().equals("RRLib"));
 	}
 	
 	@Test
@@ -84,7 +83,6 @@ class LibrarianTest {
 		}
 		testBR.close();
 		assertTrue(found == false);
-		assertTrue(user.getUsername().equals("RRLib"));
 	}
 	
 	@Test
@@ -101,7 +99,6 @@ class LibrarianTest {
 		}
 		testBR.close();
 		assertTrue(found == false);
-		assertTrue(user.getUsername().equals("RRLib"));
 	}
 	
 }

@@ -15,16 +15,10 @@ public class Patron extends User{
 		super(name, userName, pw, address, phone);
 	}
 	
-	public User createPatron(String fName, String lName, String userName, String pw, String address, int phone) {
-//		this first check will need to be done before the information is passed to create		
-//		while(!USER_LIST.findUserName(userName)) {
-//			System.out.println("Username already exits create a unique username:");
-//			return;
-//		}
+	public static User createPatron(String nameIn, String userName, String pw, String address, int phone) {
 		
-		String name = fName + " " + lName;
-		Patron newUser = new Patron(name, userName, pw, address, phone);
-		//add to userList
+		Patron newUser = new Patron(nameIn, userName, pw, address, phone);
+		Library.addUser(newUser);
 		return newUser;
 	}
 }

@@ -2,7 +2,7 @@
 
 package project.views;
 
-import project.controller.NewUserController; //im assuming it will be called that
+import project.controller.NewUserController; 
 import javafx.application.Application;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
@@ -57,7 +57,7 @@ public class NewUserView{
 		Label rePasswordLabel = new Label("Re-enter Password:");
 		rePasswordField = new TextField();
 		Button signUpButton = new Button("Sign up");
-		signUpButton.setOnAction(e -> SignUpController.signUp(???)); //this will have to be a new controller
+		signUpButton.setOnAction(e -> NewUserController.createUser(stage, nameField, newUsernameField, newPasswordField, cityField, phoneField));
 		VBox layout3 = new VBox(20);
 		layout3.setAlignment(Pos.CENTER);
 		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, signUpButton);

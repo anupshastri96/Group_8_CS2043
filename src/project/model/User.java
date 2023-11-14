@@ -20,7 +20,6 @@ Functions:
 package project.model;
 
 import java.io.IOException;
-//import java.util.Iterator;
 
 public abstract class User {
 	
@@ -53,17 +52,6 @@ public abstract class User {
 		}
 		return null;
 	}
-	
-//	protected User findUsername(String username){
-//		Iterator<User> userExist = USER_LIST.iterator();
-//		while(userExist.hasNext()) {
-//    		User userInList = userExist.next();
-//    		if (userInList.getUserName().equals(username)) {
-//        		return userInList;
-//    		}
-//		}
-//		return null;
-//	}
 	
 	public String getUsername(){
 		return userName;
