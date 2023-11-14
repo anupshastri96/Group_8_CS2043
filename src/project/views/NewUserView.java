@@ -3,6 +3,7 @@
 package project.views;
 
 import project.controller.NewUserController; //im assuming it will be called that
+import java.util.*;
 import javafx.application.Application;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
