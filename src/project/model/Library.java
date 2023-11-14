@@ -30,7 +30,7 @@ public class Library {
 	
 	public static boolean findUsername(String username){
 		boolean userAlreadyExists = false;
-		Iterator<User> userExist = Library.USER_LIST.iterator();
+		Iterator<User> userExist = USER_LIST.iterator();
 		while(userExist.hasNext()) {
     		User userInList = userExist.next();
     		if (userInList.getUsername().equals(username)) {
