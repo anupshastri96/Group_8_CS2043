@@ -65,17 +65,6 @@ public class EditProfileView{
 		Label newPasswordLabel = new Label("Password:");
 		newPasswordField = new TextField();
 
-        String password = newPasswordField.getText();
-		Label rePasswordLabel = new Label("Re-enter Password:");
-		rePasswordField = new TextField();
-        String rePassword = rePasswordField.getText();
-		Button saveChangesButton = new Button("Save Changes");
-		saveChangesButton.setOnAction(e -> EditProfileController.saveChanges(name, street, city, province, postalCode, phone, userName, password, rePassword)); //new controller
-		VBox layout7 = new VBox(20);
-		layout7.setAlignment(Pos.CENTER);
-		layout7.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, saveChangesButton);
-
-
         while(password != rePassword){
             String password = newPasswordField.getText();
 		    Label rePasswordLabel = new Label("Re-enter Password:");
@@ -86,7 +75,7 @@ public class EditProfileView{
 		Button saveChangesButton = new Button("Save Changes");
         Button logoutButton = new Button("Log Out");
 		logoutButton.setOnAction(e -> Platform.exit());
-		saveChangesButton.setOnAction(e -> EditProfileController.saveChanges(name, address, postalCode, phone, userName, rePassword, logoutButton)); //new controller
+		saveChangesButton.setOnAction(e -> EditProfileController.saveChanges(name, address, postalCode, phone, userName, rePassword)); //new controller
 		VBox layout7 = new VBox(20);
 		layout7.setAlignment(Pos.CENTER);
 		layout7.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, ,postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, saveChangesButton, logoutButton);
