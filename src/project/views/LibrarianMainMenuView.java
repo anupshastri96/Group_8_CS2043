@@ -22,7 +22,7 @@ public class LibrarianMainMenuView{
 
     private static void librarianMainMenuView(Stage stage){
 
-		checkoutButton = new Button("Check Out a Book");
+		Button checkoutButton = new Button("Check Out a Book");
 		checkoutButton.setOnAction(e -> CheckoutController.checkout(???)); 
 		Button returnButton = new Button("Return a Book");
 		returnButton.setOnAction(e -> ReturnController.return(???)); // new controller
@@ -36,11 +36,13 @@ public class LibrarianMainMenuView{
 		lookUpButton.setOnAction(e -> LookUpUserController.lookUp(???)); //new controller
 		Button removeUserButton = new Button("Remove a User Profile");
 		removeUserButton.setOnAction(e -> RemoveUserController.removeUser(???)); //new controller
-		editButton = new Button("Edit Profile");
+		Button editButton = new Button("Edit Profile");
 		editButton.setOnAction(e -> EditController.edit(???));
+		Button logoutButton = new Button("Log Out");
+		logoutButton.setOnAction(e -> Platform.exit());
 		VBox layout5 = new VBox(20);
 		layout5.setAlignment(Pos.CENTER);
-		layout5.getChildren().addAll(checkoutButton,returnButton,ratingButton,addButton,removeButton,lookUpButton,removeUserButton,editButton);
+		layout5.getChildren().addAll(checkoutButton,returnButton,ratingButton,addButton,removeButton,lookUpButton,removeUserButton,editButton, logoutButton);
 		scene5 = new Scene(layout5, 450, 700);
 
 		primaryStage.setScene(scene5);

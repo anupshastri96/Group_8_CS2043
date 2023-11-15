@@ -28,9 +28,17 @@ public class RatingAndReviewView{
         reviewField = new TextField();
         Button submitButton = new Button("Submit");
         submitButton.setOnAction(e -> RatingAndReviewController.submit(???)); // new controller
+<<<<<<< Updated upstream
         VBox layout6 = new VBox(20);
         layout6.setAlignment(Pos.CENTER);
         layout6.getChildren().addAll(ratingLabel, ratingField, reviewLabel, reviewField, submitButton);
+=======
+        Button logoutButton = new Button("Log Out");
+		logoutButton.setOnAction(e -> Platform.exit());
+        VBox layout6 = new VBox(20);
+        layout6.setAlignment(Pos.CENTER);
+        layout6.getChildren().addAll(ratingLabel, ratingField, reviewLabel, reviewField, submitButton, logoutButton);
+>>>>>>> Stashed changes
         scene6 = new Scene(layout6, 400, 500);
 
         stage.setScene(scene6);

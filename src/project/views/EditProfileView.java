@@ -49,6 +49,10 @@ public class EditProfileView{
 		provinceBox.add("SK");
 		provinceBox.add("YT");
         String province = provinceCombo.getValue().toString();
+<<<<<<< Updated upstream
+=======
+        String address = name + street + city + province;
+>>>>>>> Stashed changes
 		Label postCodeLabel = new Label("Postal Code:");
 		postCodeField = new TextField();
         String postalCode = postCodeField.getText();
@@ -60,6 +64,7 @@ public class EditProfileView{
         String userName = newUsernameField.getText();
 		Label newPasswordLabel = new Label("Password:");
 		newPasswordField = new TextField();
+<<<<<<< Updated upstream
         String password = newPasswordField.getText();
 		Label rePasswordLabel = new Label("Re-enter Password:");
 		rePasswordField = new TextField();
@@ -69,6 +74,23 @@ public class EditProfileView{
 		VBox layout7 = new VBox(20);
 		layout7.setAlignment(Pos.CENTER);
 		layout7.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, saveChangesButton);
+=======
+
+        while(password != rePassword){
+            String password = newPasswordField.getText();
+		    Label rePasswordLabel = new Label("Re-enter Password:");
+		    rePasswordField = new TextField();
+            String rePassword = rePasswordField.getText();
+        }
+
+		Button saveChangesButton = new Button("Save Changes");
+        Button logoutButton = new Button("Log Out");
+		logoutButton.setOnAction(e -> Platform.exit());
+		saveChangesButton.setOnAction(e -> EditProfileController.saveChanges(name, address, postalCode, phone, userName, rePassword, logoutButton)); //new controller
+		VBox layout7 = new VBox(20);
+		layout7.setAlignment(Pos.CENTER);
+		layout7.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, ,postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, saveChangesButton);
+>>>>>>> Stashed changes
 		scene7 = new Scene(layout7, 450, 700);
 
         stage.setScene(scene7);

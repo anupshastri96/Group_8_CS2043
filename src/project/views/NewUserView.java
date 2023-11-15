@@ -4,6 +4,7 @@ package project.views;
 
 import project.controller.NewUserController; //im assuming it will be called that
 import java.util.*;
+import javafx.application.Platform;
 import javafx.application.Application;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
@@ -51,26 +52,33 @@ public class NewUserView{
 		provinceBox.add("SK");
 		provinceBox.add("YT");
 		String province = provinceCombo.getValue().toString();
+		String address = name + street + city + province;
 		Label postCodeLabel = new Label("Postal Code:");
 		postCodeField = new TextField();
 		String postalCode = postCodeField.getText();
 		Label phoneLabel = new Label("Phone:");
 		phoneField = new TextField();
-		String phone = phoneField.getText();
+		int phone = Integer.parseInt(phoneField.getText());
 		Label newUsernameLabel = new Label("User Name:");
 		newUsernameField = new TextField();
 		String userName = newUsernameField.getText();
 		Label newPasswordLabel = new Label("Password:");
 		newPasswordField = new TextField();
-		String password = newPasswordField.getText();
-		Label rePasswordLabel = new Label("Re-enter Password:");
-		rePasswordField = new TextField();
-		String rePassword = rePasswordField.getText();
+
+		while(password != rePassword){
+			String password = newPasswordField.getText();
+			Label rePasswordLabel = new Label("Re-enter Password:");
+			rePasswordField = new TextField();
+			String rePassword = rePasswordField.getText();
+		}
+
 		Button signUpButton = new Button("Sign up");
-		signUpButton.setOnAction(e -> SignUpController.signUp(name, street, city, province, postalCode, phone, userName, password, rePassword)); //this will have to be a new controller
+		signUpButton.setOnAction(e -> SignUpController.createUser(name, address, postalCode, phone, userName, rePassword)); //this will have to be a new controller
+		Button logoutButton = new Button("Log Out");
+		logoutButton.setOnAction(e -> Platform.exit());
 		VBox layout3 = new VBox(20);
 		layout3.setAlignment(Pos.CENTER);
-		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, signUpButton);
+		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, signUpButton, logoutButton);
 		scene3 = new Scene(layout3, 450, 700);
 
         stage.setScene(scene3);
