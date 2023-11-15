@@ -2,15 +2,11 @@
 
 package project.views;
 
-import project.controller.NewUserController; 
-import javafx.application.Application;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
@@ -57,11 +53,11 @@ public class NewUserView{
 		Label rePasswordLabel = new Label("Re-enter Password:");
 		rePasswordField = new TextField();
 		Button signUpButton = new Button("Sign up");
-		signUpButton.setOnAction(e -> NewUserController.createUser(stage, nameField, newUsernameField, newPasswordField, cityField, phoneField));
+		//signUpButton.setOnAction(e -> NewUserController.createUser(stage, nameField, newUsernameField, newPasswordField, cityField, phoneField));
 		VBox layout3 = new VBox(20);
 		layout3.setAlignment(Pos.CENTER);
 		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, signUpButton);
-		scene3 = new Scene(layout3, 450, 700);
+		scene3 = new Scene(layout3, 450, 800);
 
         stage.setScene(scene3);
         stage.show();

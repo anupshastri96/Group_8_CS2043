@@ -23,10 +23,10 @@ public class LibrarianMainMenuView{
     private static void librarianMainMenuView(Stage stage){
 
 		checkoutButton = new Button("Check Out a Book");
-		checkoutButton.setOnAction(e -> CheckoutController.checkout(???)); 
+		//checkoutButton.setOnAction(e -> CheckoutController.checkout(???)); 
 		Button returnButton = new Button("Return a Book");
-		returnButton.setOnAction(e -> ReturnController.return(???)); // new controller
-		ratingButton = new Button("Rate and Review a Book");
+		//returnButton.setOnAction(e -> ReturnController.return(???)); // new controller
+		//ratingButton = new Button("Rate and Review a Book");
 		ratingButton.setOnAction(e -> RatingController.rate(???));
 		Button addButton = new Button("Add a Book to the Inventory");
 		addButton.setOnAction(e -> AddBookController.add(???)); //new controller

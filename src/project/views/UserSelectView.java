@@ -8,6 +8,7 @@ Functions:
 **/
 package project.views;
 
+import project.controller.NewUserController;
 import project.controller.UserLoginController;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,8 +26,7 @@ public class UserSelectView{
 		Button userLoginButton = new Button("User Login");
 		Button newUserButton = new Button("Create New User");
 		userLoginButton.setOnAction(e -> UserLoginController.selectLogIn(stage));
-		//newUserButton.setOnAction(e -> primaryStage.setScene(scene3));// send to controller -> call scene3
-		
+		newUserButton.setOnAction(e -> NewUserController.goBackNewUserView(stage));		
 		VBox layout1 = new VBox(20);
 		layout1.setAlignment(Pos.CENTER);
 		layout1.getChildren().addAll(userLoginButton, newUserButton);
