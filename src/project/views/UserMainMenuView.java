@@ -4,6 +4,7 @@ package project.views;
 
 import project.controller.UserMainMenuController; //im assuming it will be called that
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.HBox;
