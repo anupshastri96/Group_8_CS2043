@@ -93,16 +93,25 @@ public class EditProfileView{
         saveChangesButton.setOnAction(e -> 
         	{  
         		String name = nameField.getText().toString();
+        		System.out.println(name);
         		String province = checkNullProv(provinceCombo.getValue());
         		int phone = checkNullPhone(phoneField);
+        		String[] address = getAddress(streetField.getText().toString(), cityField.getText().toString(), province.toString(), postCodeField.getText().toString());
         		String username = newUsernameField.getText().toString();
-        		String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + 
-        							province.toString() + "," + postCodeField.getText().toString();
         		String password = rePasswordField.getText().toString();
         		EditProfileController.updateUser(loggedInUser, stage, name, username, password, address, phone);
         		}
         	);
         }
+    	
+    	private static String[] getAddress(String street, String city, String prov, String postCode) {
+    		String[] addressArray = new String[4];
+    		addressArray[0] = street;
+    		addressArray[1] = city;
+    		addressArray[2] = prov;
+    		addressArray[3] = postCode;
+    		return addressArray;
+    	}
     	
     	private static int checkNullPhone(TextField phoneField) {
     		int phone = 0;

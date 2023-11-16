@@ -19,7 +19,7 @@ public class NewUserController {
 	
 	private static Patron patronModel;
 		
-	public static void createUser(Stage stage, String name, String newUsername, String rePassword, String address, int phone) {
+	public static void createUser(Stage stage, String name, String newUsername, String rePassword, String[] address, int phone) {
 		if(!Library.findUsername(newUsername)) {
 			patronModel = Patron.createPatron(name, newUsername, rePassword, address, phone);
 			System.out.println("New Patron created: \n" + patronModel);

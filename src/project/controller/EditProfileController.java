@@ -18,26 +18,26 @@ import project.views.UserMainMenuView;
 
 public class EditProfileController {
 
-	public static void updateUser(User loggedInUser, Stage stage, String name, String newUsername, String rePassword, String address, int phone) {
-		if (!name.trim().equals("")) {
+	public static void updateUser(User loggedInUser, Stage stage, String name, String newUsername, String rePassword, String[] address, int phone) {
+		if(!name.trim().equals("")) {
 			User.updateName(loggedInUser, name);
 		}
-		if (!newUsername.trim().equals("")) {
+		if(!newUsername.trim().equals("")) {
 			User.updateUsername(loggedInUser, newUsername);
 		}
-		if (!rePassword.trim().equals("")) {
+		if(!rePassword.trim().equals("")) {
 			User.updatePassword(loggedInUser, rePassword);
 		}
-		if (!address.trim().equals("")) {
-			String[] newAddressArray = address.split(",");
-			String[] oldAddressArray = loggedInUser.getAddress().split(",");
-			String updatedAddress = "";
-			for(int i = 0; i < newAddressArray.length; ++i) {				
-				if(newAddressArray[i].equals("")) {
-					updatedAddress += oldAddressArray[i]+ ",";
+		if(address.length != 0) {
+			String[] oldAddressArray = loggedInUser.getAddress();
+			String[] updatedAddress = new String[4];
+			
+			for(int i = 0; i < address.length; ++i) {				
+				if(address[i].equals("")) {
+					updatedAddress[i] = oldAddressArray[i];
 				}
-				else if(!newAddressArray[i].equals("")) {
-					updatedAddress += newAddressArray[i] + ",";
+				else if(!address[i].equals(",")) {
+					updatedAddress[i] = address[i];
 				}
 			}
 			User.updateAddress(loggedInUser, updatedAddress);
