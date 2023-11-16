@@ -59,6 +59,7 @@ public class NewUserView{
 		Label phoneLabel = new Label("Phone:");
 		phoneField = new TextField();
 		int phone = Integer.parseInt(phoneField.getText());
+		String phone = phoneField.getText();
 		Label newUsernameLabel = new Label("User Name:");
 		newUsernameField = new TextField();
 		String userName = newUsernameField.getText();
@@ -76,6 +77,14 @@ public class NewUserView{
 		signUpButton.setOnAction(e -> SignUpController.createUser(name, address, postalCode, phone, userName, rePassword)); //this will have to be a new controller
 		Button logoutButton = new Button("Log Out");
 		logoutButton.setOnAction(e -> Platform.exit());
+
+		String password = newPasswordField.getText();
+		Label rePasswordLabel = new Label("Re-enter Password:");
+		rePasswordField = new TextField();
+		String rePassword = rePasswordField.getText();
+		Button signUpButton = new Button("Sign up");
+		signUpButton.setOnAction(e -> SignUpController.signUp(name, street, city, province, postalCode, phone, userName, password, rePassword)); //this will have to be a new controller
+
 		VBox layout3 = new VBox(20);
 		layout3.setAlignment(Pos.CENTER);
 		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, signUpButton, logoutButton);
