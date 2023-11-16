@@ -2,7 +2,7 @@
 
 package project.views;
 
-import project.controller.EditProfileController; //im assuming it will be called that
+//import project.controller.EditProfileController; //im assuming it will be called that
 import java.util.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -10,6 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import project.controller.NewUserController;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.scene.control.Label;
@@ -49,40 +50,37 @@ public class EditProfileView{
 		provinceBox.add("QC");
 		provinceBox.add("SK");
 		provinceBox.add("YT");
-        String province = provinceCombo.getValue().toString();
-
-        String address = name + street + city + province;
-
+        
+     
 		Label postCodeLabel = new Label("Postal Code:");
 		postCodeField = new TextField();
-        String postalCode = postCodeField.getText();
 		Label phoneLabel = new Label("Phone:");
 		phoneField = new TextField();
-        String phone = phoneField.getText();
 		Label newUsernameLabel = new Label("User Name:");
 		newUsernameField = new TextField();
-        String userName = newUsernameField.getText();
 		Label newPasswordLabel = new Label("Password:");
 		newPasswordField = new TextField();
-
-        while(password != rePassword){
-            String password = newPasswordField.getText();
-		    Label rePasswordLabel = new Label("Re-enter Password:");
-		    rePasswordField = new TextField();
-            String rePassword = rePasswordField.getText();
-        }
+		Label rePasswordLabel = new Label("Re-enter Password:");
+		rePasswordField = new TextField();
 
 		Button saveChangesButton = new Button("Save Changes");
         Button logoutButton = new Button("Log Out");
 		logoutButton.setOnAction(e -> Platform.exit());
-		saveChangesButton.setOnAction(e -> EditProfileController.saveChanges(name, address, postalCode, phone, userName, rePassword)); //new controller
+				
 		VBox layout7 = new VBox(20);
 		layout7.setAlignment(Pos.CENTER);
-		layout7.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, ,postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, saveChangesButton, logoutButton);
-
+		layout7.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, saveChangesButton, logoutButton);
+	
 		scene7 = new Scene(layout7, 450, 700);
 
         stage.setScene(scene7);
         stage.show();
+        
+//        saveChangesButton.setOnAction(e -> {String username = newUsernameField.getText();
+//		String name = nameField.getText();
+//		String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + provinceCombo.getValue().toString() + "," + postCodeField.getText().toString();
+//		int phone = Integer.parseInt(phoneField.getText());
+//		String rePassword = rePasswordField.getText();
+//		NewUserController.createUser(stage, name, username, rePassword, address, phone); });
     }
 }

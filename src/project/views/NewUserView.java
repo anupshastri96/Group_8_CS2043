@@ -4,16 +4,24 @@ package project.views;
 
 import project.controller.NewUserController;
 import javafx.scene.control.ComboBox;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.Button;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.event.ActionEvent;
-
 
 public class NewUserView{
     static Scene scene3;
@@ -23,10 +31,8 @@ public class NewUserView{
 
         Label nameLabel = new Label("Name:");
 		nameField = new TextField();
-		String name = nameField.getText();
 		Label streetLabel = new Label("Street:");
 		streetField = new TextField();
-		String street = streetField.getText();
 		Label cityLabel = new Label("City:");
 		cityField = new TextField();
 
@@ -48,17 +54,23 @@ public class NewUserView{
 		provinceBox.add("YT");
 		Label postCodeLabel = new Label("Postal Code:");
 		postCodeField = new TextField();
-		String postalCode = postCodeField.getText();
+		
 		Label phoneLabel = new Label("Phone:");
 		phoneField = new TextField();
-		int phone = Integer.parseInt(phoneField.getText());
-		String phone = phoneField.getText();
+		phoneField.setTextFormatter(new TextFormatter<>(new IntegerStringConverter()));
+		phoneField.textProperty().addListener((obs,oldv,newv) -> {
+		    try {
+		        phoneField.getTextFormatter().getValueConverter().fromString(newv);
+		        phoneField.setBorder(null);
+		    } catch (NumberFormatException e) {
+		        phoneField.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(2), new Insets(-2))));
+		    }
+		});
+		
 		Label newUsernameLabel = new Label("User Name:");
 		newUsernameField = new TextField();
-		
 		Label newPasswordLabel = new Label("Password:");
 		newPasswordField = new TextField();
-		String newPassword = newPasswordField.getText(); 
 		Label rePasswordLabel = new Label("Re-enter Password:");
 		rePasswordField = new TextField();
 	
@@ -71,15 +83,15 @@ public class NewUserView{
 		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, signUpButton, logoutButton);
 		scene3 = new Scene(layout3, 450, 800);
 
-    stage.setScene(scene3);
-    stage.show();
+		stage.setScene(scene3);
+		stage.show();
         
 		signUpButton.setOnAction(e -> {String username = newUsernameField.getText();
 		String name = nameField.getText();
 		String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + provinceCombo.getValue().toString() + "," + postCodeField.getText().toString();
-		String phone = phoneField.getText();
+		int phone = Integer.parseInt(phoneField.getText());
 		String rePassword = rePasswordField.getText();
-		NewUserController.createUser(stage, name, username, rePassword, address, 0); });
+		NewUserController.createUser(stage, name, username, rePassword, address, phone); });
 	
     }
 }
