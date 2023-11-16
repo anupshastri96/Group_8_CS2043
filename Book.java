@@ -1,7 +1,7 @@
 package project.model;
 import java.util.*;
 
-public class Book {
+public class Book implements Comparable<Book>{
 
 	String title;
 	String author;
