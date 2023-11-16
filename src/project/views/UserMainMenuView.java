@@ -27,9 +27,11 @@ public class UserMainMenuView{
 		//recomendedButton.setOnAction(e -> RecomendedController.recomended(???));// new controller
 		Button editButton = new Button("Edit Profile");
 		//editButton.setOnAction(e -> EditProfileView(stage, loggedInUser));
+		Button logoutButton = new Button("Log Out");
+		logoutButton.setOnAction(e -> Platform.exit());
 		VBox layout4 = new VBox(20);
 		layout4.setAlignment(Pos.CENTER);
-		layout4.getChildren().addAll(checkoutButton, ratingButton, currentCheckoutButton, reservedButton, recomendedButton, editButton);
+		layout4.getChildren().addAll(checkoutButton, ratingButton, currentCheckoutButton, reservedButton, recomendedButton, editButton, logoutButton);
 		scene4 = new Scene(layout4, 450, 700);
 
         stage.setScene(scene4);

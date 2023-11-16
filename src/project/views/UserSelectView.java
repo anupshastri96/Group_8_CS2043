@@ -10,6 +10,7 @@ package project.views;
 
 import project.controller.NewUserController;
 import project.controller.UserLoginController;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,10 +27,12 @@ public class UserSelectView{
 		Button userLoginButton = new Button("User Login");
 		Button newUserButton = new Button("Create New User");
 		userLoginButton.setOnAction(e -> UserLoginController.selectLogIn(stage));
-		newUserButton.setOnAction(e -> NewUserController.goBackNewUserView(stage));		
+		newUserButton.setOnAction(e -> NewUserController.goBackNewUserView(stage));
+		Button logoutButton = new Button("Log Out");
+		logoutButton.setOnAction(e -> Platform.exit());		
 		VBox layout1 = new VBox(20);
 		layout1.setAlignment(Pos.CENTER);
-		layout1.getChildren().addAll(userLoginButton, newUserButton);
+		layout1.getChildren().addAll(userLoginButton, newUserButton, logoutButton);
 		scene1 = new Scene(layout1, 300, 250);
        
 		stage.setScene(scene1);

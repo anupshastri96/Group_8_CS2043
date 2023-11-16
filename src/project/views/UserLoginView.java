@@ -10,6 +10,7 @@ Functions:
 package project.views;
 
 import project.controller.UserLoginController;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,10 +36,11 @@ public class UserLoginView{
 	    String pw = passwordField.getText();
 	    
 		loginButton.setOnAction(e -> UserLoginController.login(user, pw, stage));//After login send to controller -> scene4
-	    	    
+		Button logoutButton = new Button("Log Out");
+		logoutButton.setOnAction(e -> Platform.exit());
 		VBox layout2 = new VBox(20);
 		layout2.setAlignment(Pos.CENTER);
-		layout2.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField, loginButton);
+		layout2.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField, loginButton, logoutButton);
 		scene2 = new Scene(layout2, 300, 250);
 		
 		stage.setScene(scene2);

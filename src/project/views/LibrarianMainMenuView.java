@@ -31,9 +31,11 @@ public class LibrarianMainMenuView{
 		//removeUserButton.setOnAction(e -> RemoveUserController.removeUser(???)); //new controller
 		Button editButton = new Button("Edit Profile");
 		//editButton.setOnAction(e -> EditController.edit(???));
+		Button logoutButton = new Button("Log Out");
+		logoutButton.setOnAction(e -> Platform.exit());
 		VBox layout5 = new VBox(20);
 		layout5.setAlignment(Pos.CENTER);
-		layout5.getChildren().addAll(checkoutButton,returnButton,ratingButton,addButton,removeButton,lookUpButton,removeUserButton,editButton);
+		layout5.getChildren().addAll(checkoutButton,returnButton,ratingButton,addButton,removeButton,lookUpButton,removeUserButton,editButton, logoutButton);
 		scene5 = new Scene(layout5, 450, 700);
 
 		stage.setScene(scene5);
@@ -41,3 +43,4 @@ public class LibrarianMainMenuView{
 
     }
 }
+
