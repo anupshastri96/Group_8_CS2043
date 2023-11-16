@@ -28,7 +28,7 @@ class LibrarianTest {
 		fw.write("\rPerson3 tempPassword3");
 		fw.write("\rPerson4 tempPassword4");
 		fw.close();
-		String[] updateAddress = new String[3];
+		String[] updateAddress = new String[4];
 		userLibrarian = new Librarian("UpdateUsername", "Update name", "Update password", updateAddress, 0);
 		userPatron = new Patron("UpdateFields", "Update Username", "Update password", updateAddress, 0);
 	}
