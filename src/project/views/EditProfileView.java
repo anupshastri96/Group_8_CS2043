@@ -2,38 +2,34 @@
 
 package project.views;
 
-//import project.controller.EditProfileController; //im assuming it will be called that
-import java.util.*;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import project.controller.NewUserController;
+import project.controller.EditProfileController;
+import project.model.User;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
-import javafx.event.ActionEvent;
 
 public class EditProfileView{
     static Scene scene7;
     static TextField nameField, streetField, cityField, postCodeField, phoneField, newUsernameField, newPasswordField, rePasswordField;
 
-    public static void editProfileView(Stage stage){
+    public static void editProfileView(Stage stage, User loggedInUser){
 
         Label nameLabel = new Label("Name:");
 		nameField = new TextField();
-        String name = nameField.getText();
+   
 		Label streetLabel = new Label("Street:");
 		streetField = new TextField();
-        String street = streetField.getText();
+    
 		Label cityLabel = new Label("City:");
 		cityField = new TextField();
-        String city = cityField.getText();
+
 		ComboBox<String> provinceCombo = new ComboBox<String>();
 		ObservableList<String> provinceBox = provinceCombo.getItems();
 		provinceCombo.setPromptText("Province:");
@@ -50,8 +46,7 @@ public class EditProfileView{
 		provinceBox.add("QC");
 		provinceBox.add("SK");
 		provinceBox.add("YT");
-        
-     
+		
 		Label postCodeLabel = new Label("Postal Code:");
 		postCodeField = new TextField();
 		Label phoneLabel = new Label("Phone:");
@@ -71,16 +66,31 @@ public class EditProfileView{
 		layout7.setAlignment(Pos.CENTER);
 		layout7.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, saveChangesButton, logoutButton);
 	
-		scene7 = new Scene(layout7, 450, 700);
+		scene7 = new Scene(layout7, 450, 800);
 
         stage.setScene(scene7);
         stage.show();
         
-//        saveChangesButton.setOnAction(e -> {String username = newUsernameField.getText();
-//		String name = nameField.getText();
-//		String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + provinceCombo.getValue().toString() + "," + postCodeField.getText().toString();
-//		int phone = Integer.parseInt(phoneField.getText());
-//		String rePassword = rePasswordField.getText();
-//		NewUserController.createUser(stage, name, username, rePassword, address, phone); });
+        saveChangesButton.setOnAction(e -> 
+        	{String username = newUsernameField.getText();
+        		String name = nameField.getText();
+        		String province;
+        		if(provinceCombo.getValue() == null) {
+        			province = "";
+        		}
+        		else {
+        			province = provinceCombo.getValue().toString();
+        		}
+        		String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + province + "," + postCodeField.getText().toString();
+        		
+        		int phone = 0;
+        		if(phoneField.getText().toString().equals("")) {
+        			phone = 0;
+        		}
+        		else {
+        		 phone = Integer.parseInt(phoneField.getText());
+        		}
+        		String rePassword = rePasswordField.getText();
+        		EditProfileController.updateUser(loggedInUser, stage, name, username, rePassword, address, phone); });
     }
 }
