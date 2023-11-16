@@ -4,6 +4,7 @@ package project.views;
 
 import project.controller.UserMainMenuController; //im assuming it will be called that
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.HBox;
@@ -33,10 +34,11 @@ public class UserMainMenuView{
 		Button recomendedButton = new Button("Recomended Books");
 		recomendedButton.setOnAction(e -> RecomendedController.recomended(???));// new controller
 		Button editButton = new Button("Edit Profile");
-		c
+		Button logoutButton = new Button("Log Out");
+		logoutButton.setOnAction(e -> Platform.exit());
 		VBox layout4 = new VBox(20);
 		layout4.setAlignment(Pos.CENTER);
-		layout4.getChildren().addAll(checkoutButton, ratingButton, currentCheckoutButton, reservedButton, recomendedButton, editButton);
+		layout4.getChildren().addAll(checkoutButton, ratingButton, currentCheckoutButton, reservedButton, recomendedButton, editButton, logoutButton);
 		scene4 = new Scene(layout4, 450, 700);
 
         stage.setScene(scene4);
