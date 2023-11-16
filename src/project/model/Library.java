@@ -36,7 +36,6 @@ public class Library {
     		if (userInList.getUsername().equals(username)) {
     			System.out.println(userInList.getUsername());
     			userFound = true;
-    			System.out.println("user has been found in the list" + userFound);
     			return userFound;
     		}
 		}
