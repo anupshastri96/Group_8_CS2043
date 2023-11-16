@@ -32,11 +32,7 @@ public class EditProfileController {
 			String[] newAddressArray = address.split(",");
 			String[] oldAddressArray = loggedInUser.getAddress().split(",");
 			String updatedAddress = "";
-			for(int i = 0; i < newAddressArray.length; ++i) {
-				System.out.println("Changed address:" + newAddressArray[i]);
-				System.out.println("oldAddress : " + oldAddressArray[i]);
-				System.out.println("newaddress : " + updatedAddress);
-				
+			for(int i = 0; i < newAddressArray.length; ++i) {				
 				if(newAddressArray[i].equals("")) {
 					updatedAddress += oldAddressArray[i]+ ",";
 				}
