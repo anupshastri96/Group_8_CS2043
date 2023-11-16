@@ -2,18 +2,10 @@
 
 package project.views;
 
-import project.controller.LibrarianMainMenuController; //im assuming it will be called that
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.scene.control.ComboBox;
-import javafx.collections.ObservableList;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import project.model.User;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
 import javafx.event.ActionEvent;
@@ -21,24 +13,24 @@ import javafx.event.ActionEvent;
 public class LibrarianMainMenuView{
     static Scene scene5;
 
-    private static void librarianMainMenuView(Stage stage){
+    public static void librarianMainMenuView(Stage stage, User loggedInUser){
 
 		Button checkoutButton = new Button("Check Out a Book");
-		checkoutButton.setOnAction(e -> CheckoutController.checkout(???)); 
+		//checkoutButton.setOnAction(e -> CheckoutController.checkout(???)); 
 		Button returnButton = new Button("Return a Book");
-		returnButton.setOnAction(e -> ReturnController.return(???)); // new controller
-		ratingButton = new Button("Rate and Review a Book");
-		ratingButton.setOnAction(e -> RatingController.rate(???));
+		//returnButton.setOnAction(e -> ReturnController.return(???)); // new controller
+		Button ratingButton = new Button("Rate and Review a Book");
+		//ratingButton.setOnAction(e -> RatingController.rate(???));
 		Button addButton = new Button("Add a Book to the Inventory");
-		addButton.setOnAction(e -> AddBookController.add(???)); //new controller
+		//addButton.setOnAction(e -> AddBookController.add(???)); //new controller
 		Button removeButton = new Button("Remove a Book from Inventory");
-		removeButton.setOnAction(e -> RemoveBookController.removeBook(???)); //new controller
+		//removeButton.setOnAction(e -> RemoveBookController.removeBook(???)); //new controller
 		Button lookUpButton = new Button("Look Up a User");
-		lookUpButton.setOnAction(e -> LookUpUserController.lookUp(???)); //new controller
+		//lookUpButton.setOnAction(e -> LookUpUserController.lookUp(???)); //new controller
 		Button removeUserButton = new Button("Remove a User Profile");
-		removeUserButton.setOnAction(e -> RemoveUserController.removeUser(???)); //new controller
+		//removeUserButton.setOnAction(e -> RemoveUserController.removeUser(???)); //new controller
 		Button editButton = new Button("Edit Profile");
-		editButton.setOnAction(e -> EditController.edit(???));
+		//editButton.setOnAction(e -> EditController.edit(???));
 		Button logoutButton = new Button("Log Out");
 		logoutButton.setOnAction(e -> Platform.exit());
 		VBox layout5 = new VBox(20);
@@ -46,7 +38,9 @@ public class LibrarianMainMenuView{
 		layout5.getChildren().addAll(checkoutButton,returnButton,ratingButton,addButton,removeButton,lookUpButton,removeUserButton,editButton, logoutButton);
 		scene5 = new Scene(layout5, 450, 700);
 
-		primaryStage.setScene(scene5);
-		primaryStage.show();
+		stage.setScene(scene5);
+		stage.show();
 
     }
+}
+

@@ -20,7 +20,6 @@ Functions:
 package project.model;
 
 import java.io.IOException;
-//import java.util.Iterator;
 
 public abstract class User {
 	
@@ -40,30 +39,19 @@ public abstract class User {
 	
 	public static User userLogIn(String userIn, String pw) throws IOException{
 		
-		User userFound = new Patron(null, null,null, null, 0); //USER_LIST.findUserName(userIn);
-		if(userFound.validate(userIn, pw)) {
+		User userFound = Library.findUser(userIn);
+		if((userFound != null) && userFound.validate(userIn, pw)) {
 			return userFound;
 		}
-		else if(!userFound.validate(userIn, pw)) {
+		else {
 			Librarian newLib = Librarian.checkTempLibList(userIn, pw);
 			if(newLib != null) {
 				return newLib;
 			}
-			System.out.println("user name or password not valid");
+			System.out.println("user name or password not valid");	
 		}
 		return null;
 	}
-	
-//	protected User findUsername(String username){
-//		Iterator<User> userExist = USER_LIST.iterator();
-//		while(userExist.hasNext()) {
-//    		User userInList = userExist.next();
-//    		if (userInList.getUserName().equals(username)) {
-//        		return userInList;
-//    		}
-//		}
-//		return null;
-//	}
 	
 	public String getUsername(){
 		return userName;
@@ -108,9 +96,8 @@ public abstract class User {
 		return validated;
 	}
 	
-	
 	@Override
 	public String toString() {
-		return String.format("%s %s %s (%d)",userName, name, address, phone);
+		return String.format("%s %s %s (phone:%d)",userName, name, address, phone);
 	}
 }

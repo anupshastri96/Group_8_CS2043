@@ -26,14 +26,9 @@ public class Librarian extends User {
 	}
 	
 	public Librarian createLibrarian(String name, String userName, String pw, String address, int phone){
-		//parse string into name/userName/pw/phone number
-//		this first check will need to be done before the information is passed to create		
-//		while(!USER_LIST.findUserName(userName)) {
-//			System.out.println("Username already exits create a unique username:");
-//			return;
-//		}
+
 		Librarian newUser = new Librarian(name, userName, pw, address, phone);
-		//add to userList
+		Library.addUser(newUser);
 		return newUser;
 	}
 	
@@ -76,8 +71,8 @@ public class Librarian extends User {
 		
 		while ((tempLine = tempR.readLine()) != null ) {
 			if (tempLine.equals(user + " " + pw)) {
-				Librarian newLib = new Librarian("RRLib","temp","test","test",0);//call input screen for new user
-				//add to user list
+				Librarian newLib = new Librarian("Replace",null,null,null,0);
+				//go to update user information to create a new librarian.
 				tempR.close();
 				removeRecord("TempUserTest", tempLine);
 				return newLib;

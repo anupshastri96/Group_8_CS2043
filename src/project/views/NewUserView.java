@@ -2,17 +2,12 @@
 
 package project.views;
 
-import project.controller.NewUserController; //im assuming it will be called that
-import java.util.*;
-import javafx.application.Platform;
-import javafx.application.Application;
+import project.controller.NewUserController;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
@@ -34,7 +29,7 @@ public class NewUserView{
 		String street = streetField.getText();
 		Label cityLabel = new Label("City:");
 		cityField = new TextField();
-		String city = cityField.getText();
+
 		ComboBox<String> provinceCombo = new ComboBox<String>();
 		ObservableList<String> provinceBox = provinceCombo.getItems();
 		provinceCombo.setPromptText("Province:");
@@ -51,8 +46,6 @@ public class NewUserView{
 		provinceBox.add("QC");
 		provinceBox.add("SK");
 		provinceBox.add("YT");
-		String province = provinceCombo.getValue().toString();
-		String address = name + street + city + province;
 		Label postCodeLabel = new Label("Postal Code:");
 		postCodeField = new TextField();
 		String postalCode = postCodeField.getText();
@@ -62,35 +55,31 @@ public class NewUserView{
 		String phone = phoneField.getText();
 		Label newUsernameLabel = new Label("User Name:");
 		newUsernameField = new TextField();
-		String userName = newUsernameField.getText();
+		
 		Label newPasswordLabel = new Label("Password:");
 		newPasswordField = new TextField();
-
-		while(password != rePassword){
-			String password = newPasswordField.getText();
-			Label rePasswordLabel = new Label("Re-enter Password:");
-			rePasswordField = new TextField();
-			String rePassword = rePasswordField.getText();
-		}
-
-		Button signUpButton = new Button("Sign up");
-		signUpButton.setOnAction(e -> SignUpController.createUser(name, address, postalCode, phone, userName, rePassword)); //this will have to be a new controller
-		Button logoutButton = new Button("Log Out");
-		logoutButton.setOnAction(e -> Platform.exit());
-
-		String password = newPasswordField.getText();
+		String newPassword = newPasswordField.getText(); 
 		Label rePasswordLabel = new Label("Re-enter Password:");
 		rePasswordField = new TextField();
-		String rePassword = rePasswordField.getText();
+	
 		Button signUpButton = new Button("Sign up");
-		signUpButton.setOnAction(e -> SignUpController.signUp(name, street, city, province, postalCode, phone, userName, password, rePassword)); //this will have to be a new controller
+		Button logoutButton = new Button("Log Out");
+		logoutButton.setOnAction(e -> Platform.exit());
 
 		VBox layout3 = new VBox(20);
 		layout3.setAlignment(Pos.CENTER);
 		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, signUpButton, logoutButton);
-		scene3 = new Scene(layout3, 450, 700);
+		scene3 = new Scene(layout3, 450, 800);
 
-        stage.setScene(scene3);
-        stage.show();
+    stage.setScene(scene3);
+    stage.show();
+        
+		signUpButton.setOnAction(e -> {String username = newUsernameField.getText();
+		String name = nameField.getText();
+		String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + provinceCombo.getValue().toString() + "," + postCodeField.getText().toString();
+		String phone = phoneField.getText();
+		String rePassword = rePasswordField.getText();
+		NewUserController.createUser(stage, name, username, rePassword, address, 0); });
+	
     }
 }
