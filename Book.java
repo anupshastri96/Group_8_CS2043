@@ -1,5 +1,5 @@
 package project.model;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Book {
 
@@ -15,17 +15,17 @@ public class Book {
 		ratingsReviews = new ArrayList<RatingsReviews>();
 	}
 	
-	void addRating(int ratingIn, String ratedByIn) {
+	public void addRating(int ratingIn, String ratedByIn) {
 		RatingsReviews ratingReview = new RatingsReviews(ratingIn, ratedByIn);
 		ratingsReviews.add(ratingReview);
 	}
 	
-	void addReview(int ratingIn, String reviewIn, String ratedByIn) {
+	public void addReview(int ratingIn, String reviewIn, String ratedByIn) {
 		RatingsReviews ratingReview = new RatingsReviews(ratingIn, reviewIn, ratedByIn);
 		ratingsReviews.add(ratingReview);
 	}
 	
-	double avgRating() {
+	public double avgRating() {
 		if(ratingsReviews.isEmpty()) {
 			return 0.0;
 		}
@@ -35,5 +35,4 @@ public class Book {
 		}
 		return (double) totalRating/ratingsReviews.size();
 	}
-
 }
