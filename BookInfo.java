@@ -1,4 +1,4 @@
-
+package project.model;
 public class BookInfo {
 
 	String bookID;
