@@ -33,6 +33,11 @@ public class BookInfo {
 	public void setIsAvailable() {
 		available = true;
 	}
+
+	public void setIsReserved(String dueDateIn){
+		available = true;
+		dueDate = dueDateIn;
+	}
 	
 	public boolean getIsAvailable() {
 		return available;
