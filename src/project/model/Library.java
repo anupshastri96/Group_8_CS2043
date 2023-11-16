@@ -34,11 +34,22 @@ public class Library {
 		while(userExist.hasNext()) {
     		User userInList = userExist.next();
     		if (userInList.getUsername().equals(username)) {
-    			System.out.println(userInList.getUsername());
     			userFound = true;
     			return userFound;
     		}
 		}
 		return userFound;
+	}
+	
+	public static User findUser(String username){
+		Iterator<User> userExist = USER_LIST.iterator();
+		while(userExist.hasNext()) {
+    		User userInList = userExist.next();
+    		if (userInList.getUsername().equals(username)) {
+    			    			
+    			return userInList;
+    		}
+		}
+		return null;
 	}
 }

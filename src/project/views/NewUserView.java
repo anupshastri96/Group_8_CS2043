@@ -2,11 +2,11 @@
 
 package project.views;
 
+import project.controller.NewUserController;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import project.controller.NewUserController;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

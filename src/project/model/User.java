@@ -39,16 +39,16 @@ public abstract class User {
 	
 	public static User userLogIn(String userIn, String pw) throws IOException{
 		
-		User userFound = new Patron(null, null,null, null, 0); //USER_LIST.findUserName(userIn);
-		if(userFound.validate(userIn, pw)) {
+		User userFound = Library.findUser(userIn);
+		if((userFound != null) && userFound.validate(userIn, pw)) {
 			return userFound;
 		}
-		else if(!userFound.validate(userIn, pw)) {
+		else {
 			Librarian newLib = Librarian.checkTempLibList(userIn, pw);
 			if(newLib != null) {
 				return newLib;
 			}
-			System.out.println("user name or password not valid");
+			System.out.println("user name or password not valid");	
 		}
 		return null;
 	}
@@ -95,7 +95,6 @@ public abstract class User {
 		}
 		return validated;
 	}
-	
 	
 	@Override
 	public String toString() {
