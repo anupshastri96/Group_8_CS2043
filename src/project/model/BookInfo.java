@@ -32,15 +32,24 @@ public class BookInfo {
 	
 	public void setIsAvailable() {
 		available = true;
+		dueDate = null;
+		reservedUntil = null;
+		userName = null;
 	}
 
-	public void setIsReserved(String dueDateIn){
-		available = true;
+	public void setIsReserved(String dueDateIn, String userNameIn){
+		available = false;
 		dueDate = dueDateIn;
+		reservedUntil = dueDateIn;
+		userName = userNameIn;
 	}
 	
 	public boolean getIsAvailable() {
 		return available;
+	}
+
+	public String getReservedUser(){
+		return userName;
 	}
 
 }
