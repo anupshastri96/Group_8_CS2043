@@ -3,7 +3,6 @@
 package project.views;
 
 //import project.controller.RatingAndReviewController; //im assuming it will be called that
-
 import javafx.application.Platform;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -12,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
-import javafx.event.ActionEvent;
 
 public class RatingAndReviewView{
     static Scene scene6;
