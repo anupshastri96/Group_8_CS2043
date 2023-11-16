@@ -22,10 +22,12 @@ public class NewUserController {
 	public static void createUser(Stage stage, String name, String newUsername, String rePassword, String address, int phone) {
 		if(!Library.findUsername(newUsername)) {
 			patronModel = Patron.createPatron(name, newUsername, rePassword, address, phone);
+			System.out.println("New Patron created: \n" + patronModel);
 			UserMainMenuView.userMainMenuView(stage, patronModel);
 		}
 		else if(Library.findUsername(newUsername)) {
 			goBackNewUserView(stage);
+			System.out.println("Username already being used");
 		}
 	}
 	

@@ -5,18 +5,27 @@ package project.views;
 import javafx.application.Platform;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 import project.controller.EditProfileController;
 import project.model.User;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.Button;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 public class EditProfileView{
-    static Scene scene7;
+    static Scene scene7, scene8;
     static TextField nameField, streetField, cityField, postCodeField, phoneField, newUsernameField, newPasswordField, rePasswordField;
 
     public static void editProfileView(Stage stage, User loggedInUser){
@@ -51,6 +60,16 @@ public class EditProfileView{
 		postCodeField = new TextField();
 		Label phoneLabel = new Label("Phone:");
 		phoneField = new TextField();
+		phoneField.setTextFormatter(new TextFormatter<>(new IntegerStringConverter()));
+		phoneField.textProperty().addListener((obs,oldv,newv) -> {
+		    try {
+		        phoneField.getTextFormatter().getValueConverter().fromString(newv);
+		        phoneField.setBorder(null);
+		    } catch (NumberFormatException e) {
+		        phoneField.setBorder(new Border(new BorderStroke(Color.RED, BorderStrokeStyle.SOLID, new CornerRadii(3), new BorderWidths(2), new Insets(-2))));
+		    }
+		});
+		
 		Label newUsernameLabel = new Label("User Name:");
 		newUsernameField = new TextField();
 		Label newPasswordLabel = new Label("Password:");
@@ -72,25 +91,39 @@ public class EditProfileView{
         stage.show();
         
         saveChangesButton.setOnAction(e -> 
-        	{String username = newUsernameField.getText();
-        		String name = nameField.getText();
-        		String province;
-        		if(provinceCombo.getValue() == null) {
-        			province = "";
+        	{  
+        		String name = nameField.getText().toString();
+        		String province = checkNullProv(provinceCombo.getValue());
+        		int phone = checkNullPhone(phoneField);
+        		String username = newUsernameField.getText().toString();
+        		String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + 
+        							province.toString() + "," + postCodeField.getText().toString();
+        		String password = rePasswordField.getText().toString();
+        		EditProfileController.updateUser(loggedInUser, stage, name, username, password, address, phone);
         		}
-        		else {
-        			province = provinceCombo.getValue().toString();
-        		}
-        		String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + province + "," + postCodeField.getText().toString();
-        		
-        		int phone = 0;
-        		if(phoneField.getText().toString().equals("")) {
-        			phone = 0;
-        		}
-        		else {
-        		 phone = Integer.parseInt(phoneField.getText());
-        		}
-        		String rePassword = rePasswordField.getText();
-        		EditProfileController.updateUser(loggedInUser, stage, name, username, rePassword, address, phone); });
-    }
+        	);
+        }
+    	
+    	private static int checkNullPhone(TextField phoneField) {
+    		int phone = 0;
+    		if(phoneField.getText().toString().equals("")) {
+    			phone = 0;
+    		}
+    		else {
+    		 phone = Integer.parseInt(phoneField.getText());
+    		}
+    		return phone;
+    	}
+    	
+    	private static String checkNullProv(String chkProv) {
+    		String province;
+    		if( chkProv == null) {
+    			province = "";
+    		}
+    		else {
+    			province = chkProv.toString();
+    		}
+    		return province;
+    	}
+    	
 }

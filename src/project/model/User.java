@@ -31,7 +31,7 @@ public abstract class User {
 	
 	public User(String name, String userName, String pw, String address, int phone) {
 		this.name = name;
-		this.userName = name;
+		this.userName = userName;
 		password = pw;
 		this.address = address;
 		this.phone = phone;
@@ -59,6 +59,10 @@ public abstract class User {
 	
 	public String getName(){
 		return name;
+	}
+	
+	public String getAddress() {
+		return address;
 	}
 	
 	public int getPhone() {
@@ -98,6 +102,6 @@ public abstract class User {
 	
 	@Override
 	public String toString() {
-		return String.format("%s %s %s (phone:%d)",userName, name, address, phone);
+		return String.format("UserName: %s\n Name: %s\n Password: %S\n Address: %s\n (phone:%d)",userName, name, password, address, phone);
 	}
 }

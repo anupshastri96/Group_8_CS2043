@@ -86,12 +86,14 @@ public class NewUserView{
 		stage.setScene(scene3);
 		stage.show();
         
-		signUpButton.setOnAction(e -> {String username = newUsernameField.getText();
-		String name = nameField.getText();
-		String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + provinceCombo.getValue().toString() + "," + postCodeField.getText().toString();
-		int phone = Integer.parseInt(phoneField.getText());
-		String rePassword = rePasswordField.getText();
-		NewUserController.createUser(stage, name, username, rePassword, address, phone); });
-	
+		signUpButton.setOnAction(e -> 
+		{	
+			String name = nameField.getText().toString();
+			String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + provinceCombo.getValue().toString() + "," + postCodeField.getText().toString();
+			int phone = Integer.parseInt(phoneField.getText());
+			String username = newUsernameField.getText().toString();
+			String rePassword = rePasswordField.getText().toString();
+			NewUserController.createUser(stage, name, username, rePassword, address, phone); }
+		);
     }
 }

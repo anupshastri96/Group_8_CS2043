@@ -19,22 +19,34 @@ import project.views.UserMainMenuView;
 public class EditProfileController {
 
 	public static void updateUser(User loggedInUser, Stage stage, String name, String newUsername, String rePassword, String address, int phone) {
-		if (!name.equals("")) {
+		if (!name.trim().equals("")) {
 			User.updateName(loggedInUser, name);
 		}
-		if (!newUsername.equals("")) {
+		if (!newUsername.trim().equals("")) {
 			User.updateUsername(loggedInUser, newUsername);
 		}
-		if (!rePassword.equals("")) {
+		if (!rePassword.trim().equals("")) {
 			User.updatePassword(loggedInUser, rePassword);
 		}
-		if (!address.equals("")) {
-			//comma separated this will need a method to parse 
-			//the information back into order without deleting information if left blank
-			User.updateAddress(loggedInUser, newUsername);
+		if (!address.trim().equals("")) {
+			String[] newAddressArray = address.split(",");
+			String[] oldAddressArray = loggedInUser.getAddress().split(",");
+			String updatedAddress = "";
+			for(int i = 0; i < newAddressArray.length; ++i) {
+				System.out.println("Changed address:" + newAddressArray[i]);
+				System.out.println("oldAddress : " + oldAddressArray[i]);
+				System.out.println("newaddress : " + updatedAddress);
+				
+				if(newAddressArray[i].equals("")) {
+					updatedAddress += oldAddressArray[i]+ ",";
+				}
+				else if(!newAddressArray[i].equals("")) {
+					updatedAddress += newAddressArray[i] + ",";
+				}
+			}
+			User.updateAddress(loggedInUser, updatedAddress);
 		}
 		if(phone != 0) {
-			//if left blank what is passed, may need a default value
 			User.updatePhone(loggedInUser, phone);
 		}
 		if(loggedInUser instanceof Patron) {
