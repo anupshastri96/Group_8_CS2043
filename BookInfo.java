@@ -14,27 +14,27 @@ public class BookInfo {
 		available = true; //assumes a new book is available by default
 	}
 	
-	void updateDueDate(String dueDateIn) {
+	public void updateDueDate(String dueDateIn) {
 		dueDate = dueDateIn;
 	}
 	
-	void updateReservedUntil(String reservedUntilIn) {
+	public void updateReservedUntil(String reservedUntilIn) {
 		reservedUntil = reservedUntilIn;
 	}
 	
-	String getDueDate() {
+	public String getDueDate() {
 		return dueDate;
 	}
 	
-	String getReservedUntil() {
+	public String getReservedUntil() {
 		return reservedUntil;
 	}
 	
-	void setIsAvailable() {
+	public void setIsAvailable() {
 		available = true;
 	}
 	
-	boolean getIsAvailable() {
+	public boolean getIsAvailable() {
 		return available;
 	}
 
