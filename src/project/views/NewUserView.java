@@ -6,6 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import project.controller.NewUserController;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -26,6 +27,8 @@ public class NewUserView{
 		streetField = new TextField();
 		Label cityLabel = new Label("City:");
 		cityField = new TextField();
+		
+	
 		ComboBox<String> provinceCombo = new ComboBox<String>();
 		ObservableList<String> provinceBox = provinceCombo.getItems();
 		provinceCombo.setPromptText("Province:");
@@ -42,18 +45,22 @@ public class NewUserView{
 		provinceBox.add("QC");
 		provinceBox.add("SK");
 		provinceBox.add("YT");
+		
 		Label postCodeLabel = new Label("Postal Code:");
 		postCodeField = new TextField();
 		Label phoneLabel = new Label("Phone:");
 		phoneField = new TextField();
 		Label newUsernameLabel = new Label("User Name:");
 		newUsernameField = new TextField();
+		
 		Label newPasswordLabel = new Label("Password:");
 		newPasswordField = new TextField();
+		String newPassword = newPasswordField.getText(); 
 		Label rePasswordLabel = new Label("Re-enter Password:");
 		rePasswordField = new TextField();
+		
+
 		Button signUpButton = new Button("Sign up");
-		//signUpButton.setOnAction(e -> NewUserController.createUser(stage, nameField, newUsernameField, newPasswordField, cityField, phoneField));
 		VBox layout3 = new VBox(20);
 		layout3.setAlignment(Pos.CENTER);
 		layout3.getChildren().addAll(nameLabel, nameField, streetLabel, streetField, cityLabel, cityField, provinceCombo, postCodeLabel, postCodeField, phoneLabel, phoneField, newUsernameLabel, newUsernameField, newPasswordLabel, newPasswordField, rePasswordLabel, rePasswordField, signUpButton);
@@ -61,5 +68,14 @@ public class NewUserView{
 
         stage.setScene(scene3);
         stage.show();
+        
+		signUpButton.setOnAction(e -> {String username = newUsernameField.getText();
+		String name = nameField.getText();
+		String address = streetField.getText().toString() + "," +  cityField.getText().toString() + "," + provinceCombo.getValue().toString() + "," + postCodeField.getText().toString();
+		String phone = phoneField.getText();
+		String rePassword = rePasswordField.getText();
+		NewUserController.createUser(stage, name, username, rePassword, address, 0); });
+		
+		
     }
 }

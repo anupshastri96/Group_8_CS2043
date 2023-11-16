@@ -19,25 +19,27 @@ public class Library {
 	
 	public Library() {}
 	
-	public static void addUser(User usertoAdd) {
-		if(!findUsername(usertoAdd.getUsername())) {
-			USER_LIST.add(usertoAdd);
+	public static void addUser(User userToAdd) {
+		if(!findUsername(userToAdd.getUsername())) {
+			USER_LIST.add(userToAdd);
 		}
-		else if(findUsername(usertoAdd.getUsername())) {
+		else if(findUsername(userToAdd.getUsername())) {
 			System.out.println("user already in list");
 		}
 	}
 	
 	public static boolean findUsername(String username){
-		boolean userAlreadyExists = false;
+		boolean userFound = false;
 		Iterator<User> userExist = USER_LIST.iterator();
 		while(userExist.hasNext()) {
     		User userInList = userExist.next();
     		if (userInList.getUsername().equals(username)) {
-    			userAlreadyExists = true;
-        	return userAlreadyExists;
+    			System.out.println(userInList.getUsername());
+    			userFound = true;
+    			System.out.println("user has been found in the list" + userFound);
+    			return userFound;
     		}
 		}
-		return userAlreadyExists;
+		return userFound;
 	}
 }

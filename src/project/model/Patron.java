@@ -15,10 +15,11 @@ public class Patron extends User{
 		super(name, userName, pw, address, phone);
 	}
 	
-	public static User createPatron(String nameIn, String userName, String pw, String address, int phone) {
+	public static Patron createPatron(String nameIn, String userName, String pw, String address, int phone) {
 		
 		Patron newUser = new Patron(nameIn, userName, pw, address, phone);
 		Library.addUser(newUser);
 		return newUser;
 	}
+	
 }

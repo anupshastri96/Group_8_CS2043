@@ -99,6 +99,6 @@ public abstract class User {
 	
 	@Override
 	public String toString() {
-		return String.format("%s %s %s (%d)",userName, name, address, phone);
+		return String.format("%s %s %s (phone:%d)",userName, name, address, phone);
 	}
 }

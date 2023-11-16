@@ -12,18 +12,17 @@ package project.controller;
 import javafx.stage.Stage;
 import project.model.Library;
 import project.model.Patron;
-import project.model.User;
 import project.views.NewUserView;
+import project.views.UserMainMenuView;
 
 public class NewUserController {
 	
-	private static User model;
+	private static Patron patronModel;
 		
 	public static void createUser(Stage stage, String name, String newUsername, String rePassword, String address, int phone) {
 		if(!Library.findUsername(newUsername)) {
-			model = Patron.createPatron(name, newUsername, rePassword, address, phone);
-			
-			Library.addUser(model);
+			patronModel = Patron.createPatron(name, newUsername, rePassword, address, phone);
+			UserMainMenuView.userMainMenuView(stage, patronModel);
 		}
 		else if(Library.findUsername(newUsername)) {
 			goBackNewUserView(stage);
