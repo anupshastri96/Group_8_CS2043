@@ -15,6 +15,7 @@ public class RatingsReviews {
 	public RatingsReviews(int ratingIn, String ratedByIn) {
 		rating = ratingIn;
 		ratedBy = ratedByIn;  
+		review = "";
 	}
 	
 	int getRating() {
