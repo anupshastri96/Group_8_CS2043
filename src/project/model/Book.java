@@ -82,3 +82,18 @@ public class Book implements Comparable<Book>{
 			return a.title.compareTo(b.title); //if same sort by title
 		}
 	}
+
+	public void printBook(){
+		System.out.println("Title: " + title + " | Author: " + author + " | Genre: " + genre + " | Average Rating: " + avgRating());
+	}
+
+	public void printBookRating(){
+		System.out.println("Ratings and Reviews for " + title + ":");
+		for(RatingsReviews ratingReview : ratingsReview){
+			System.out.println("	Rating: " + ratingReview.getRating());
+			System.out.println("	Review: " + ratingReview.getReview());
+			System.out.println("	Rated By: " + ratingReview.getRatedBy());
+			System.out.println("----------------------------------");
+		}
+	}
+		
