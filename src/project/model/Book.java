@@ -36,6 +36,15 @@ public class Book implements Comparable<Book>{
 		return (double) totalRating/ratingsReviews.size();
 	}
 
+	public Integer getRatingByUser(String ratedBy){
+		for(RatingsReviews ratingReview: ratingsReviews){
+			if(ratedBy.equals(ratingReview.getRatedBy())){
+				return ratingReview.getRating();
+			}
+		}
+		return null;
+	}
+
 	//Sort automatically by title alphabetically
 	@Override
 	public int compareTo(Book other){
