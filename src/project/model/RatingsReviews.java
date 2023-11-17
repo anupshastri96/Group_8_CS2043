@@ -35,8 +35,8 @@ public class RatingsReviews {
 
 	public void getTopRecommendedBooks(String ratedBy){
 		List<Book> reviewedBooks = new ArrayList<>();
-		for(Book book: bookList){
-			for(Book.RatingsReviews ratingReview : book.getRatingsReviews()){
+		for(Book book: reviewedBooks){
+			for(RatingsReviews ratingReview : book.getRatingReviews()){
 				if(ratedBy.equals(ratingReview.getRatedBy())){
 					reviewedBooks.add(book);
 				}
@@ -45,7 +45,7 @@ public class RatingsReviews {
 		Collections.sort(reviewedBooks, new Comparator<Book>(){
 			@Override
 			public int compare(Book a, Book b){
-				int i = Integer.compare(b.getRatingByUser(ratedBy), a.getRatingByUser(ratedBy));
+				int i = Integer.compare(b.getRatingByUser(ratedBy, a), a.getRatingByUser(ratedBy, b));
 				if(i != 0){
 					return i;
 				}
@@ -56,16 +56,15 @@ public class RatingsReviews {
 	}
 
 	//r stands for recommendation
-	private void printRecommendations(String userNameIn, List<Book.UserReviewedBook> rIn){//r stands for recommendation
+	private void printRecommendations(String userNameIn, List<Book> rIn){//r stands for recommendation
 		System.out.println("Hi " + userNameIn + ", here are some recommendations for you!");
 		int count = 0;
 		for(Book.UserReviewedBook r : rIn){
 			if(count < 5){
-				Book current = r.getBook();
 				System.out.println("	Title: " + r.getTitle());
 				System.out.println("	Author: " + r.getAuthor());
 				System.out.println("	Genre: " + r.getGenre());
-				System.out.println("	Rating: " + r.getRating());
+				System.out.println("	Rating: " + r.getRatingByUser(userNameIn, r));
 				System.out.println("-------------------------------");
 				count++;
 			}else{
