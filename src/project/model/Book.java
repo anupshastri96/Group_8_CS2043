@@ -39,13 +39,13 @@ public class Book implements Comparable<Book>{
 		return (double) totalRating/ratingsReviews.size();
 	}
 
-	public Integer getRatingByUser(String ratedBy){
+	public int getRatingByUser(String ratedBy){
 		for(RatingsReviews ratingReview: ratingsReviews){
 			if(ratedBy.equals(ratingReview.getRatedBy())){
 				return ratingReview.getRating();
 			}
 		}
-		return null;
+		return -1;
 	}
 
 	public String getTitle(){
