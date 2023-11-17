@@ -9,8 +9,8 @@ Functions:
 **/
 package project.model;
 
-import.java.util.Collections;
-import.java.util.Comparator;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ArrayList;
 
@@ -60,10 +60,8 @@ public class Library {
 		Iterator<Book> bookExist = BOOK_INVENTORY.iterator();
 		while(bookExist.hasNext()){
 			Book current = bookExist.next();
-			if(current.getTitle().equals(title){
-				if(current.getAuthor().equals(author){
-					return current;
-				}
+			if(current.getTitle().equals(title) && current.getAuthor().equals(author)){
+				return current;
 			}
 		}
 		return null;
