@@ -63,7 +63,7 @@ public class BookInfo implements Comparable<BookInfo>{
 			return 0;
 		}else if (this.dueDate == null){
 			return 1;
-		}else if (other.dueDate == null){
+		}else if (other.dueDate == null{
 			return -1;
 		}
 		return this.dueDate.compareTo(other.dueDate);
