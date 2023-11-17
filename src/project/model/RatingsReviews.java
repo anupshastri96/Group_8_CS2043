@@ -45,7 +45,7 @@ public class RatingsReviews {
 		Collections.sort(reviewedBooks, new Comparator<Book>(){
 			@Override
 			public int compare(Book a, Book b){
-				int i = Integer.compare(b.getRatingByUser(ratedBy, a), a.getRatingByUser(ratedBy, b));
+				int i = Integer.compare(b.getRatingByUser(ratedBy), a.getRatingByUser(ratedBy));
 				if(i != 0){
 					return i;
 				}
@@ -64,7 +64,7 @@ public class RatingsReviews {
 				System.out.println("	Title: " + r.getTitle());
 				System.out.println("	Author: " + r.getAuthor());
 				System.out.println("	Genre: " + r.getGenre());
-				System.out.println("	Rating: " + r.getRatingByUser(userNameIn, r));
+				System.out.println("	Rating: " + r.getRatingByUser(userNameIn));
 				System.out.println("-------------------------------");
 				count++;
 			}else{
