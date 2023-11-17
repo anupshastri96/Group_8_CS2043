@@ -11,12 +11,11 @@ package project.model;
 
 public class Patron extends User{
 	
-	public Patron(String name, String userName, String pw, String address, int phone) {
+	public Patron(String name, String userName, String pw, String[] address, int phone) {
 		super(name, userName, pw, address, phone);
 	}
 	
-	public static Patron createPatron(String nameIn, String userName, String pw, String address, int phone) {
-		
+	public static Patron createPatron(String nameIn, String userName, String pw, String[] address, int phone) {
 		Patron newUser = new Patron(nameIn, userName, pw, address, phone);
 		Library.addUser(newUser);
 		return newUser;

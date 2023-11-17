@@ -2,9 +2,9 @@
 
 package project.views;
 
+import project.model.User;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import project.model.User;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
@@ -16,21 +16,26 @@ public class LibrarianMainMenuView{
     public static void librarianMainMenuView(Stage stage, User loggedInUser){
 
 		Button checkoutButton = new Button("Check Out a Book");
+		//Text field to enter id number - can be done through main menu
 		//checkoutButton.setOnAction(e -> CheckoutController.checkout(???)); 
 		Button returnButton = new Button("Return a Book");
+		//Text field to enter id number - can be done through main menu
 		//returnButton.setOnAction(e -> ReturnController.return(???)); // new controller
 		Button ratingButton = new Button("Rate and Review a Book");
 		//ratingButton.setOnAction(e -> RatingController.rate(???));
 		Button addButton = new Button("Add a Book to the Inventory");
-		//addButton.setOnAction(e -> AddBookController.add(???)); //new controller
+		//Text field to enter a bookID number can remove the book from the main menu controller and we won't need another view.
+		//addButton.setOnAction(e -> MainMenuCotroller.addBook(bookToAddField.getText())); main menu controller
 		Button removeButton = new Button("Remove a Book from Inventory");
-		//removeButton.setOnAction(e -> RemoveBookController.removeBook(???)); //new controller
+		//Text field to enter a bookID number can remove the book from the main menu controller and we won't need another view.
+		//removeButton.setOnAction(e -> MainMenuController.removeBook(???)); main menu controller
 		Button lookUpButton = new Button("Look Up a User");
-		//lookUpButton.setOnAction(e -> LookUpUserController.lookUp(???)); //new controller
+		//lookUpButton.setOnAction(e -> //mainMenu controller -> prints user info); //new controller
 		Button removeUserButton = new Button("Remove a User Profile");
-		//removeUserButton.setOnAction(e -> RemoveUserController.removeUser(???)); //new controller
+		//maybe add a textfield for a user name then we won't need another view for this one.
+		//removeUserButton.setOnAction(e -> //may be done in mainMenuController?);
 		Button editButton = new Button("Edit Profile");
-		//editButton.setOnAction(e -> EditController.edit(???));
+		editButton.setOnAction(e -> EditProfileView.editProfileView(stage, loggedInUser));
 		Button logoutButton = new Button("Log Out");
 		logoutButton.setOnAction(e -> Platform.exit());
 		VBox layout5 = new VBox(20);

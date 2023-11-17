@@ -21,11 +21,11 @@ import java.io.PrintWriter;
 
 public class Librarian extends User {
 			
-	public Librarian(String name, String userName, String pw, String address, int phone) {
+	public Librarian(String name, String userName, String pw, String[] address, int phone) {
 		super(name, userName, pw, address, phone);
 	}
 	
-	public Librarian createLibrarian(String name, String userName, String pw, String address, int phone){
+	public Librarian createLibrarian(String name, String userName, String pw, String[] address, int phone){
 
 		Librarian newUser = new Librarian(name, userName, pw, address, phone);
 		Library.addUser(newUser);
