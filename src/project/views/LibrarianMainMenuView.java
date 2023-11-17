@@ -2,9 +2,9 @@
 
 package project.views;
 
+import project.model.User;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import project.model.User;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;

@@ -25,7 +25,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 public class EditProfileView{
-    static Scene scene7, scene8;
+    static Scene scene7;
     static TextField nameField, streetField, cityField, postCodeField, phoneField, newUsernameField, newPasswordField, rePasswordField;
 
     public static void editProfileView(Stage stage, User loggedInUser){
