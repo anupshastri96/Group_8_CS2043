@@ -33,16 +33,25 @@ public class RatingsReviews {
 		return ratedBy;
 	}
 
-	public void getTopRecommended(List<Book> bookList){
-		List<UserReviews> reviewedBooks = new ArrayList<>();
+	public void getTopRecommendedBooks(String ratedBy){
+		List<Book> reviewedBooks = new ArrayList<>();
 		for(Book book: bookList){
-			for(RatingsReviews ratingReview : book.getRatingsReviews()){
+			for(Book.RatingsReviews ratingReview : book.getRatingsReviews()){
 				if(ratedBy.equals(ratingReview.getRatedBy())){
-					reviewedBooks.add(new UserReviewed(book, ratingReview.getRating()));
+					reviewedBooks.add(book);
 				}
 			}
 		}
-		Collections.sort(reviewedBooks);
+		Collections.sort(reviewedBooks, new Comparator<Book>(){
+			@Override
+			public int compare(Book a, Book b){
+				int i = Integer.compare(b.getRatingByUser(ratedBy), a.getRatingByUser(ratedBy));
+				if(i != 0){
+					return i;
+				}
+				return a.getAuthor().compareTo(b.getAuthor());
+			}
+		});
 		printRecommendations(ratedBy, reviewedBooks);
 	}
 
