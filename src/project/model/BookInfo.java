@@ -13,6 +13,9 @@ public class BookInfo implements Comparable<BookInfo>{
 		bookID = bookIDIn;
 		publicationDate = publicationDateIn;
 		available = true; //assumes a new book is available by default
+		dueDate = null;
+		reservedUntil = null;
+		userName = null;
 	}
 	
 	public void updateDueDate(String dueDateIn) {
