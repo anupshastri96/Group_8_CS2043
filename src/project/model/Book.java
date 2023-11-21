@@ -1,21 +1,64 @@
 package project.model;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class Book implements Comparable<Book>{
 
-	String title;
-	String author;
+	static String title;
+	static String author;
 	String genre;
 	ArrayList<RatingsReviews> ratingsReviews;
-	BookInfo relatedInfo;
+	static ArrayList <BookInfo> relatedInfo;
 	
 	public Book(String titleIn, String authorIn, String genreIn, String bookIdIn, String publicationDateIn) {
 		title = titleIn;
 		author = authorIn;
 		genre = genreIn;
 		ratingsReviews = new ArrayList<RatingsReviews>();
-		relatedInfo = new BookInfo(bookIdIn, publicationDateIn);
+		relatedInfo = new ArrayList<BookInfo>();
+	}
+	
+	public Book(String titleIn, String authorIn, String bookIdIn, String publicationDateIn) {
+		if(Library.findBook(titleIn, authorIn) != null) {
+		BookInfo newInfo = new BookInfo(bookIdIn, publicationDateIn);
+		relatedInfo.add(newInfo);
+		}
+	}
+	
+	public boolean checkAvailability(String title, String author) {
+		boolean found = false;
+		Iterator<BookInfo> infoExist = getRelatedInfo().iterator();
+		while(infoExist.hasNext()){
+			BookInfo current = infoExist.next();
+			if(current.available){
+				found = true;
+				return found;
+			}
+		}
+		return found;
+	}
+	
+	public static BookInfo findBookInfo(String bookId){
+		Iterator<BookInfo> infoExist = getRelatedInfo().iterator();
+		while(infoExist.hasNext()){
+			BookInfo current = infoExist.next();
+			if(current.bookID.equals(bookId)){
+				return current;
+			}
+		}
+		return null;
+	}
+	
+	public static void removeBook(String bookId) {
+		BookInfo toRemove = findBookInfo(bookId);
+		if(toRemove != null) {
+			getRelatedInfo().remove(toRemove);
+		}
+		if(getRelatedInfo().size() == 0) {
+			Book found = Library.findBook(Book.title, Book.author);
+			Library.removeFromInventory(found);
+		}
 	}
 	
 	public void addRating(int ratingIn, String ratedByIn) {
@@ -59,16 +102,17 @@ public class Book implements Comparable<Book>{
 	public String getGenre(){
 		return genre;
 	}
-
-	public BookInfo getRelatedInfo(){
+	
+	public static ArrayList<BookInfo> getRelatedInfo(){
 		return relatedInfo;
 	}
 
 	public ArrayList<RatingsReviews> getRatingReviews(){
 		return ratingsReviews;
 	}
-
+	
 	//Sort automatically by title alphabetically
+	@SuppressWarnings("static-access")
 	@Override
 	public int compareTo(Book other){
 		return this.title.compareTo(other.title);
@@ -76,6 +120,7 @@ public class Book implements Comparable<Book>{
 
 	//Sorting by Author
 	public static class AuthorComparator implements Comparator<Book>{
+		@SuppressWarnings("static-access")
 		@Override
 		public int compare(Book a, Book b){
 			if(a.author != null && b.author != null){
@@ -87,6 +132,7 @@ public class Book implements Comparable<Book>{
 
 	//Sorting by genre
 	public static class GenreComparator implements Comparator<Book>{
+		@SuppressWarnings("static-access")
 		@Override
 		public int compare(Book a, Book b){
 			if(a.genre != null && b.genre != null){
@@ -101,9 +147,10 @@ public class Book implements Comparable<Book>{
 
 	//Sorting by availabilty
 	public static class AvailabilityComparator implements Comparator<Book>{
+		@SuppressWarnings("static-access")
 		@Override
 		public int compare(Book a, Book b){
-			int i = Boolean.compare(a.relatedInfo.getIsAvailable(), b.relatedInfo.getIsAvailable()); //sort by availability
+			int i = Boolean.compare(a.checkAvailability(a.title, b.author), b.checkAvailability(b.title, b.author)); //sort by availability
 			if(i != 0){
 				return i;
 			}

@@ -54,6 +54,10 @@ public class Library {
 		}
 		return null;
 	}
+			
+	public static void removeFromInventory(Book book) {
+		BOOK_INVENTORY.remove(book);
+	}
 
 	//Julia
 	public static Book findBook(String title, String author){
@@ -73,21 +77,21 @@ public class Library {
 
 	public static void printListByTitle(){
 		Collections.sort(BOOK_INVENTORY);
-		printBookList(BOOK_INVENTORY);
+		//printBookList(BOOK_INVENTORY);
 	}
 	
 	public static void printListByAuthor(){
 		Collections.sort(BOOK_INVENTORY, new Book.AuthorComparator());
-		printBookList(BOOK_INVENTORY);
+		//printBookList(BOOK_INVENTORY);
 	}
 	
 	public static void printListByGenre(){
 		Collections.sort(BOOK_INVENTORY, new Book.GenreComparator());
-		printBookList(BOOK_INVENTORY);
+		//printBookList(BOOK_INVENTORY);
 	}
 	
 	public static void printListByAvailability(){
 		Collections.sort(BOOK_INVENTORY, new Book.AvailabilityComparator());
-		printBookList(BOOK_INVENTORY);
+		//printBookList(BOOK_INVENTORY);
 	}	
 }

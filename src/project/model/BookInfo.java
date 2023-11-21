@@ -1,5 +1,6 @@
 package project.model;
 import java.util.*;
+
 public class BookInfo implements Comparable<BookInfo>{
 
 	String bookID;
@@ -16,6 +17,10 @@ public class BookInfo implements Comparable<BookInfo>{
 		dueDate = null;
 		reservedUntil = null;
 		userName = null;
+	}
+	
+	public String getBookID() {
+		return bookID;
 	}
 	
 	public void updateDueDate(String dueDateIn) {
