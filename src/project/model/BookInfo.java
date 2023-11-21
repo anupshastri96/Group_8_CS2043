@@ -19,6 +19,10 @@ public class BookInfo implements Comparable<BookInfo>{
 		userName = null;
 	}
 	
+	public String getBookID() {
+		return bookID;
+	}
+	
 	public void updateDueDate(String dueDateIn) {
 		dueDate = dueDateIn;
 	}

@@ -54,6 +54,10 @@ public class Library {
 		}
 		return null;
 	}
+			
+	public static void removeFromInventory(Book book) {
+		BOOK_INVENTORY.remove(book);
+	}
 
 	//Julia
 	public static Book findBook(String title, String author){
