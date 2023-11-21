@@ -32,10 +32,8 @@ public class UserLoginView{
 		passwordField = new TextField();
 		Button loginButton = new Button("Login");
 		
-	    String user = usernameField.getText(); 
-	    String pw = passwordField.getText();
-	    
-		loginButton.setOnAction(e -> UserLoginController.login(user, pw, stage));//After login send to controller -> scene4
+	    	    
+		loginButton.setOnAction(e -> UserLoginController.login(usernameField.getText().toString(), passwordField.getText().toString(), stage));
 		Button logoutButton = new Button("Log Out");
 		logoutButton.setOnAction(e -> Platform.exit());
 		VBox layout2 = new VBox(20);
