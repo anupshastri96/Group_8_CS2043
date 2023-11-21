@@ -14,7 +14,7 @@ Librarians will be able to manage the book inventory and track late fees.
 
 ##Contributors
 + Sarah Flynn (S-M-Flynn)
-+ Aman Jilin Khan 
++ Aman Jilin Khan (amankhnn) 
 + Kayla Chapman (cookedbee)
 + Julia Ignaczewska (julign)
 

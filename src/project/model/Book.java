@@ -59,7 +59,7 @@ public class Book implements Comparable<Book>{
 	public String getGenre(){
 		return genre;
 	}
-
+	
 	public BookInfo getRelatedInfo(){
 		return relatedInfo;
 	}
