@@ -74,6 +74,10 @@ public class Library {
 	public static void addBook(Book bookIn){
 			BOOK_INVENTORY.add(bookIn);
 	}
+	
+	public static ArrayList<Book> getInventory() {
+		return BOOK_INVENTORY;
+	}
 
 	public static void printListByTitle(){
 		Collections.sort(BOOK_INVENTORY);

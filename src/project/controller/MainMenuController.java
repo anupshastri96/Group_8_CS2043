@@ -18,13 +18,12 @@ import project.views.LibrarianMainMenuView;
 public class MainMenuController {
 		
 	public static void addBook(User loggedInUser, Stage stage, String titleIn, String authorIn, String genreIn, String bookIdIn, String publicationDateIn) {
-		Book newBook = new Book(titleIn, authorIn, genreIn, bookIdIn, publicationDateIn);
-		Library.addBook(newBook);
+		Book.addNewBook(titleIn, authorIn, genreIn, bookIdIn, publicationDateIn);
 		LibrarianMainMenuView.librarianMainMenuView(stage, loggedInUser);
 	}
 	
-	public static void removeBook(User loggedInUser, Stage stage, String bookId) {
-		Book.removeBook(bookId);
+	public static void removeBook(User loggedInUser, Stage stage, String bookId, String author, String title) {
+		Book.removeBook(bookId, author, title);
 		LibrarianMainMenuView.librarianMainMenuView(stage, loggedInUser);
 	}
 }
