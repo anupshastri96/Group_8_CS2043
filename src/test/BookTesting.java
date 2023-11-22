@@ -9,7 +9,18 @@ import project.model.Book;
 import project.model.Library;
 
 public class BookTesting {
-		      
+	
+	 @Test
+	 public void testBookAvgRating() {
+	  	Book book = new Book("Title", "Author", "Genre");
+	   	Book book2 = new Book("Title2", "Author1", "Genre");
+    	assertEquals(0.0, book.avgRating(), 0.001);
+    	book.addRating(5, "User1");
+    	assertEquals(5.0, book.avgRating(), 0.001);
+    	book.addRating(3, "User2");
+    	assertEquals(4.0, book.avgRating(), 0.001);
+    }
+	 
     @Test
 	public void addBookToInventoryTest() {
     	Book.addNewBook("OneTitle", "One Author", "Sci-Fi", "bkID1", "2021-02-01");
