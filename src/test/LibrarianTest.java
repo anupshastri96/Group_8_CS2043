@@ -56,7 +56,6 @@ class LibrarianTest {
 	
 	@Test
 	void testCheckTempListFirst()throws IOException{
-		Librarian user = Librarian.checkTempLibList("Person1", "tempPassword1");
 		FileReader testFR = new FileReader("TempUserTest");
 		BufferedReader testBR = new BufferedReader(testFR);
 		String currentLine;
@@ -72,7 +71,6 @@ class LibrarianTest {
 	
 	@Test
 	void testCheckTempListLast()throws IOException{
-		Librarian user = Librarian.checkTempLibList("Person4", "tempPassword4");
 		FileReader testFR = new FileReader("TempUserTest");
 		BufferedReader testBR = new BufferedReader(testFR);
 		String currentLine;
@@ -88,7 +86,6 @@ class LibrarianTest {
 	
 	@Test
 	void testCheckTempList2()throws IOException {
-		Librarian user = Librarian.checkTempLibList("Person2", "tempPassword2");
 		FileReader testFR = new FileReader("TempUserTest");
 		BufferedReader testBR = new BufferedReader(testFR);
 		String currentLine;

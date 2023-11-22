@@ -26,7 +26,7 @@ public class UserMainMenuView{
         Button ratingButton = new Button("Rate and Review a Book");
         Label bookId = new Label("Book ID:");
 		ratingBookField = new TextField();
-		ratingButton.setOnAction(e -> MainMenuController.getBookToReview(stage, loggedInUser, ratingBookField.getText()));
+		//ratingButton.setOnAction(e -> MainMenuController.getBookToReview(stage, loggedInUser, ratingBookField.getText()));
 		
 		Button currentCheckoutButton = new Button("Books Currently Checked Out");
 		//currentCheckoutButton.setOnAction(e -> MainMenuController.getBooksCheckedOut(stage, loggedInUser) ); //print list in terminal for now

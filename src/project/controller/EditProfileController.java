@@ -54,5 +54,5 @@ public class EditProfileController {
 			LibrarianMainMenuView.librarianMainMenuView(stage, loggedInUser);
 		}
 	}
-	
+		
 }

@@ -19,6 +19,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import project.controller.EditProfileController;
+
 public class Librarian extends User {
 			
 	public Librarian(String name, String userName, String pw, String[] address, int phone) {
@@ -64,17 +66,18 @@ public class Librarian extends User {
 	}
 	
 	public static Librarian checkTempLibList(String user, String pw) throws IOException {
-		File tempFile = new File("TempUserTest");
+		File tempFile = new File("TempUser");
 		FileReader reader = new FileReader(tempFile);
 		BufferedReader tempR = new BufferedReader(reader);
 		String tempLine;
 		
 		while ((tempLine = tempR.readLine()) != null ) {
+		
 			if (tempLine.equals(user + " " + pw)) {
-				Librarian newLib = new Librarian("Replace",null,null,null,0);
-				//go to update user information to create a new librarian.
+				String[] tempAddress = new String[] {"street", "City", "PC"};
+				Librarian newLib = new Librarian("Replace", user, pw, tempAddress, 0);
 				tempR.close();
-				removeRecord("TempUserTest", tempLine);
+				removeRecord("TempUser", tempLine);
 				return newLib;
 			}
 			tempLine = tempR.readLine();

@@ -5,27 +5,32 @@ import java.util.Iterator;
 
 public class Book implements Comparable<Book>{
 
-	static String title;
-	static String author;
+	String title;
+	String author;
 	String genre;
-	ArrayList<RatingsReviews> ratingsReviews;
-	static ArrayList <BookInfo> relatedInfo;
+	ArrayList<RatingsReviews> ratingsReviews = new ArrayList<>();
+	private ArrayList<BookInfo> relatedInfo = new ArrayList<>();;
 	
-	public Book(String titleIn, String authorIn, String genreIn, String bookIdIn, String publicationDateIn) {
+	public Book(String titleIn, String authorIn, String genreIn) {
 		title = titleIn;
 		author = authorIn;
 		genre = genreIn;
-		ratingsReviews = new ArrayList<RatingsReviews>();
-		relatedInfo = new ArrayList<BookInfo>();
 	}
 	
-	public Book(String titleIn, String authorIn, String bookIdIn, String publicationDateIn) {
-		if(Library.findBook(titleIn, authorIn) != null) {
-		BookInfo newInfo = new BookInfo(bookIdIn, publicationDateIn);
-		relatedInfo.add(newInfo);
+	public static void addNewBook(String titleIn, String authorIn, String genreIn, String bookIdIn, String publicationDateIn) {
+		Book bookCheck = Library.findBook(titleIn, authorIn);
+		if(bookCheck != null) {
+			BookInfo newInfo= new BookInfo(bookIdIn, publicationDateIn);
+			bookCheck.relatedInfo.add(newInfo);
+			}
+		else if(bookCheck == null){
+			Book newBook = new Book(titleIn, authorIn, genreIn);
+			BookInfo newInfo= new BookInfo(bookIdIn, publicationDateIn);
+			newBook.relatedInfo.add(newInfo);
+			Library.addBook(newBook);
 		}
 	}
-	
+		
 	public boolean checkAvailability(String title, String author) {
 		boolean found = false;
 		Iterator<BookInfo> infoExist = getRelatedInfo().iterator();
@@ -39,25 +44,25 @@ public class Book implements Comparable<Book>{
 		return found;
 	}
 	
-	public static BookInfo findBookInfo(String bookId){
-		Iterator<BookInfo> infoExist = getRelatedInfo().iterator();
+	public static BookInfo findBookInfo(Book book, String bookId){
+		Iterator<BookInfo> infoExist = book.relatedInfo.iterator();
 		while(infoExist.hasNext()){
 			BookInfo current = infoExist.next();
-			if(current.bookID.equals(bookId)){
+			if(current.getBookID().equals(bookId)){
 				return current;
 			}
 		}
 		return null;
 	}
 	
-	public static void removeBook(String bookId) {
-		BookInfo toRemove = findBookInfo(bookId);
-		if(toRemove != null) {
-			getRelatedInfo().remove(toRemove);
+	public static void removeBook(String bookId, String title, String author) {
+		Book bookToRemove = Library.findBook(title, author);
+		BookInfo infoToRemove = findBookInfo(bookToRemove, bookId);
+		if(infoToRemove != null) {
+			bookToRemove.relatedInfo.remove(infoToRemove);
 		}
-		if(getRelatedInfo().size() == 0) {
-			Book found = Library.findBook(Book.title, Book.author);
-			Library.removeFromInventory(found);
+		if(bookToRemove.relatedInfo.size() == 0) {
+			Library.removeFromInventory(bookToRemove);
 		}
 	}
 	
@@ -103,7 +108,7 @@ public class Book implements Comparable<Book>{
 		return genre;
 	}
 	
-	public static ArrayList<BookInfo> getRelatedInfo(){
+	public ArrayList<BookInfo> getRelatedInfo(){
 		return relatedInfo;
 	}
 
@@ -112,7 +117,6 @@ public class Book implements Comparable<Book>{
 	}
 	
 	//Sort automatically by title alphabetically
-	@SuppressWarnings("static-access")
 	@Override
 	public int compareTo(Book other){
 		return this.title.compareTo(other.title);
@@ -120,7 +124,6 @@ public class Book implements Comparable<Book>{
 
 	//Sorting by Author
 	public static class AuthorComparator implements Comparator<Book>{
-		@SuppressWarnings("static-access")
 		@Override
 		public int compare(Book a, Book b){
 			if(a.author != null && b.author != null){
@@ -132,7 +135,6 @@ public class Book implements Comparable<Book>{
 
 	//Sorting by genre
 	public static class GenreComparator implements Comparator<Book>{
-		@SuppressWarnings("static-access")
 		@Override
 		public int compare(Book a, Book b){
 			if(a.genre != null && b.genre != null){
@@ -147,7 +149,6 @@ public class Book implements Comparable<Book>{
 
 	//Sorting by availabilty
 	public static class AvailabilityComparator implements Comparator<Book>{
-		@SuppressWarnings("static-access")
 		@Override
 		public int compare(Book a, Book b){
 			int i = Boolean.compare(a.checkAvailability(a.title, b.author), b.checkAvailability(b.title, b.author)); //sort by availability

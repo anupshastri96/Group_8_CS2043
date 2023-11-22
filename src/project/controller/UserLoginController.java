@@ -15,6 +15,7 @@ import project.model.Librarian;
 import project.model.Patron;
 import project.model.User;
 import project.views.LibrarianMainMenuView;
+import project.views.EditProfileView;
 import project.views.UserLoginView;
 import project.views.UserMainMenuView;
 import project.views.UserSelectView;
@@ -25,15 +26,22 @@ public class UserLoginController {
 
     private static User model;
        
-    public static void login(String usernameField, String passwordField, Stage stage) {
+    public static void login(String username, String password, Stage stage) {
     	
     	try {
-			model = User.userLogIn(usernameField, passwordField);
+			model = User.userLogIn(username, password);
 			if (model == null) {
 				userSelect(stage);
 			}
 			else if (model instanceof Librarian) {
-				LibrarianMainMenuView.librarianMainMenuView(stage, model);
+				
+				if(model.getName().equals("Replace")) {
+					EditProfileView.editProfileView(stage, model);
+				}
+				else if(!model.getName().equals("Replace")){
+					LibrarianMainMenuView.librarianMainMenuView(stage, model);
+				}
+						
 			}
 			else if (model instanceof Patron) {
 				UserMainMenuView.userMainMenuView(stage, model);
