@@ -45,10 +45,12 @@ public class UserMainMenuView{
 		bookButton.getChildren().addAll(checkoutButton, ratingButton);
 		VBox bookLayout = new VBox(8);
 		bookLayout.setAlignment(Pos.CENTER);
-		String cssLayout = "-fx-border-color: grey;\n" +
+		String cssLayout = "-fx-background-color:skyblue, derive(skyblue, 25%), derive(skyblue, 50%), derive(skyblue, 75%); \n" +
+				"-fx-background-insets: 5, 10, 20, 30;\n" +
+				"-fx-border-color: grey;\n" +
                 "-fx-border-insets: 5;\n" +
                 "-fx-border-width: 1;\n" +
-                "-fx-border-style: solid;\n";   
+                "-fx-border-style: solid;\n"; 
 		bookLayout.setStyle(cssLayout);
 		bookLayout.getChildren().addAll(bookBox, bookButton);
 		
@@ -65,7 +67,7 @@ public class UserMainMenuView{
 		
 		VBox layout4 = new VBox(20);
 		layout4.setAlignment(Pos.CENTER);
-		layout4.getChildren().addAll(bookBox, bookButton, currentCheckoutButton, reservedButton, recomendedButton, editButton, logoutButton);
+		layout4.getChildren().addAll(bookLayout, currentCheckoutButton, reservedButton, recomendedButton, editButton, logoutButton);
 		scene4 = new Scene(layout4, 700, 700);
 
         stage.setScene(scene4);
