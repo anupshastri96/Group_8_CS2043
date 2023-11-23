@@ -19,8 +19,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import project.controller.EditProfileController;
-
 public class Librarian extends User {
 			
 	public Librarian(String name, String userName, String pw, String[] address, int phone) {
