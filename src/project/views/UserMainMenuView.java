@@ -35,7 +35,8 @@ public class UserMainMenuView{
 		authorBookField = new TextField();
 		Button checkoutButton = new Button("Check Out a Book");
         Button ratingButton = new Button("Rate and Review a Book");
-		HBox bookBox = new HBox(8);
+		
+        HBox bookBox = new HBox(8);
 		HBox bookButton = new HBox(5);
 		bookButton.setAlignment(Pos.CENTER);
 		bookBox.setAlignment(Pos.CENTER);
@@ -50,6 +51,7 @@ public class UserMainMenuView{
                 "-fx-border-style: solid;\n";   
 		bookLayout.setStyle(cssLayout);
 		bookLayout.getChildren().addAll(bookBox, bookButton);
+		
 		checkoutButton.setOnAction(e -> MainMenuController.checkOutABook(loggedInUser, stage, bookField.getText(), 
 				titleBookField.getText(),authorBookField.getText()));
 		//ratingButton.setOnAction(e -> MainMenuController.getBookToReview(loggedInUser, stage, bookField.getText(), 
@@ -60,6 +62,7 @@ public class UserMainMenuView{
 		
 		Button logoutButton = new Button("Log Out");
 		logoutButton.setOnAction(e -> Platform.exit());
+		
 		VBox layout4 = new VBox(20);
 		layout4.setAlignment(Pos.CENTER);
 		layout4.getChildren().addAll(bookBox, bookButton, currentCheckoutButton, reservedButton, recomendedButton, editButton, logoutButton);

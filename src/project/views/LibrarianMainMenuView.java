@@ -44,7 +44,7 @@ public class LibrarianMainMenuView{
 		addBookButton.getChildren().addAll(addButton);
 		VBox bookLayout = new VBox(8);
 		bookLayout.setAlignment(Pos.CENTER);
-		String cssLayout = "-fx-background-color:skyblue, derive(skyblue, 25%), derive(skyblue, 50%), derive(skyblue, 75%); ;\n" +
+		String cssLayout = "-fx-background-color:skyblue, derive(skyblue, 25%), derive(skyblue, 50%), derive(skyblue, 75%); \n" +
 				"-fx-background-insets: 5, 10, 20, 30;\n" +
 				"-fx-border-color: grey;\n" +
                 "-fx-border-insets: 5;\n" +
