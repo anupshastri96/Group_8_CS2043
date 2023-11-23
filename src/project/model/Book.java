@@ -30,7 +30,23 @@ public class Book implements Comparable<Book>{
 			Library.addBook(newBook);
 		}
 	}
-		
+	
+	public static void checkOutBook(String bookId, String title, String author, User loggedInUser) {
+		Book bookToCheckOut = Library.findBook(title, author);
+		BookInfo info = findBookInfo(bookToCheckOut, bookId);
+		if(info.available) {
+			info.checkedOut(loggedInUser.getUsername());
+		}
+	}
+	
+	public static void returnABook(String bookId, String title, String author) {
+		Book bookToReturn = Library.findBook(title, author);
+		BookInfo info = findBookInfo(bookToReturn, bookId);
+		if(!info.available) {
+			info.returnBook();
+		}
+	}
+	
 	public boolean checkAvailability(String title, String author) {
 		boolean found = false;
 		Iterator<BookInfo> infoExist = getRelatedInfo().iterator();
