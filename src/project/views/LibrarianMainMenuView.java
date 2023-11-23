@@ -16,7 +16,8 @@ import javafx.application.Platform;
 
 public class LibrarianMainMenuView{
     static Scene scene5;
-    static TextField bookIdField, authorField, titleField, genreField, pubDateField, bookRemoveField, titleRemoveBookField, authorRemoveBookField;
+    static TextField bookIdField, authorField, titleField, genreField, pubDateField, bookField, 
+    titleBookField, authorBookField, bookCheckField, titleCheckField;
     
     public static void librarianMainMenuView(Stage stage, User loggedInUser){
 
@@ -43,48 +44,16 @@ public class LibrarianMainMenuView{
 		addBookButton.getChildren().addAll(addButton);
 		VBox bookLayout = new VBox(8);
 		bookLayout.setAlignment(Pos.CENTER);
-		String cssLayout = "-fx-border-color: blue;\n" +
-                "-fx-border-insets: 3;\n" +
-                "-fx-border-width: 2;\n" +
+		String cssLayout = "-fx-background-color:skyblue, derive(skyblue, 25%), derive(skyblue, 50%), derive(skyblue, 75%); \n" +
+				"-fx-background-insets: 5, 10, 20, 30;\n" +
+				"-fx-border-color: grey;\n" +
+                "-fx-border-insets: 5;\n" +
+                "-fx-border-width: 1;\n" +
                 "-fx-border-style: solid;\n";   
 		bookLayout.setStyle(cssLayout);
 		bookLayout.getChildren().addAll(addBookLabel, addBookBox, addBookButton);
 		addButton.setOnAction(e -> MainMenuController.addBook(loggedInUser, stage, titleField.getText(), author.getText(), 
 				genre.getText(), bookIdField.getText(), pubDateField.getText()));
-    	
-    	Button checkoutButton = new Button("Check Out a Book");
-		//Text field to enter id number - can be done through main menu
-		//checkoutButton.setOnAction(e -> CheckoutController.checkout(???)); 
-		Button returnButton = new Button("Return a Book");
-		//Text field to enter id number - can be done through main menu
-		//returnButton.setOnAction(e -> ReturnController.return(???)); // new controller
-		Button ratingButton = new Button("Rate and Review a Book");
-		//ratingButton.setOnAction(e -> RatingController.rate(???));
-		
-		
-		
-		Button removeButton = new Button("Remove a Book from Inventory");
-		
-		Label removeBook = new Label("Book ID To Remove:");
-		bookRemoveField = new TextField();
-		Label titleRemoveBook = new Label("Title of Book to Remove:");
-		titleRemoveBookField = new TextField();
-		Label authorRemoveBook = new Label("Author of Book to Remove:");
-		authorRemoveBookField = new TextField();
-		
-		HBox removeBookBox = new HBox(8);
-		HBox removeBookButton = new HBox();
-		removeBookButton.setAlignment(Pos.CENTER);
-		removeBookBox.setAlignment(Pos.CENTER);
-		removeBookBox.getChildren().addAll(removeBook, bookRemoveField, titleRemoveBook, titleRemoveBookField, 
-				authorRemoveBook,authorRemoveBookField);
-		removeBookButton.getChildren().addAll(removeButton);
-		VBox removeBookLayout = new VBox(8);
-		removeBookLayout.setAlignment(Pos.CENTER);
-		removeBookLayout.setStyle(cssLayout);
-		removeBookLayout.getChildren().addAll(removeBookButton, removeBookBox);
-		removeButton.setOnAction(e -> MainMenuController.removeBook(loggedInUser, stage, bookRemoveField.getText(), 
-				titleRemoveBookField.getText(),authorRemoveBookField.getText()));
 		
 		Button lookUpButton = new Button("Look Up a User");
 		//lookUpButton.setOnAction(e -> //mainMenu controller -> prints user info); //new controller
@@ -93,12 +62,46 @@ public class LibrarianMainMenuView{
 		//removeUserButton.setOnAction(e -> //may be done in mainMenuController?);
 		Button editButton = new Button("Edit Profile");
 		editButton.setOnAction(e -> EditProfileView.editProfileView(stage, loggedInUser));
+    	
+		Button ratingButton = new Button("Rate and Review a Book");
+		//ratingButton.setOnAction(e -> RatingController.rate(???));
+		
+		Button returnButton = new Button("Return a Book");
+		Button checkoutButton = new Button("Check Out a Book");
+		Button removeButton = new Button("Remove a Book from Inventory");
+		
+		Label book = new Label("Book ID:");
+		bookField = new TextField();
+		Label titleBook = new Label("Title:");
+		titleBookField = new TextField();
+		Label authorBook = new Label("Author:");
+		authorBookField = new TextField();
+		
+		HBox bookBox = new HBox(8);
+		HBox bookButton = new HBox(5);
+		bookButton.setAlignment(Pos.CENTER);
+		bookBox.setAlignment(Pos.CENTER);
+		bookBox.getChildren().addAll(book, bookField, titleBook, titleBookField, 
+				authorBook, authorBookField);
+		bookButton.getChildren().addAll(removeButton, checkoutButton, returnButton, ratingButton);
+		VBox bookLayout1 = new VBox(8);
+		bookLayout1.setAlignment(Pos.CENTER);
+		bookLayout1.setStyle(cssLayout);
+		bookLayout1.getChildren().addAll(bookBox, bookButton);
+		
+		removeButton.setOnAction(e -> MainMenuController.removeBook(loggedInUser, stage, bookField.getText(), 
+				titleBookField.getText(),authorBookField.getText()));
+    	checkoutButton.setOnAction(e -> MainMenuController.checkOutABook(loggedInUser, stage, bookField.getText(), 
+				titleBookField.getText(),authorBookField.getText()));
+		returnButton.setOnAction(e -> MainMenuController.returnABook(loggedInUser, stage, bookField.getText(), 
+				titleBookField.getText(),authorBookField.getText()));
+		
+		
 		Button logoutButton = new Button("Log Out");
 		logoutButton.setOnAction(e -> Platform.exit());
 		VBox layout5 = new VBox(15);
 		layout5.setAlignment(Pos.CENTER);
-		layout5.getChildren().addAll(checkoutButton,returnButton,ratingButton, bookLayout,
-				removeBookLayout, lookUpButton, removeUserButton, editButton, logoutButton);
+		layout5.getChildren().addAll(bookLayout1,bookLayout, lookUpButton, removeUserButton, editButton, logoutButton);
 		scene5 = new Scene(layout5, 900, 700);
 
 		stage.setScene(scene5);
