@@ -42,16 +42,14 @@ public class UserMainMenuView{
 		bookBox.getChildren().addAll(book, bookField, titleBook, titleBookField, 
 				authorBook, authorBookField);
 		bookButton.getChildren().addAll(checkoutButton, ratingButton);
-		VBox bookLayout2 = new VBox(8);
-		bookLayout2.setAlignment(Pos.CENTER);
-		String cssLayout2 = "-fx-background-color:skyblue, derive(skyblue, 25%), derive(skyblue, 50%), derive(skyblue, 75%); ;\n" +
-				"-fx-background-insets: 5, 10, 20, 30;\n" +
-				"-fx-border-color: grey;\n" +
+		VBox bookLayout = new VBox(8);
+		bookLayout.setAlignment(Pos.CENTER);
+		String cssLayout = "-fx-border-color: grey;\n" +
                 "-fx-border-insets: 5;\n" +
                 "-fx-border-width: 1;\n" +
                 "-fx-border-style: solid;\n";   
-		bookLayout2.setStyle(cssLayout2);
-		bookLayout2.getChildren().addAll(bookBox, bookButton);
+		bookLayout.setStyle(cssLayout);
+		bookLayout.getChildren().addAll(bookBox, bookButton);
 		checkoutButton.setOnAction(e -> MainMenuController.checkOutABook(loggedInUser, stage, bookField.getText(), 
 				titleBookField.getText(),authorBookField.getText()));
 		//ratingButton.setOnAction(e -> MainMenuController.getBookToReview(loggedInUser, stage, bookField.getText(), 
