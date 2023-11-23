@@ -66,7 +66,7 @@ public class Librarian extends User {
 	}
 	
 	public static Librarian checkTempLibList(String user, String pw) throws IOException {
-		File tempFile = new File("TempUser");
+		File tempFile = new File("TempUserTest");
 		FileReader reader = new FileReader(tempFile);
 		BufferedReader tempR = new BufferedReader(reader);
 		String tempLine;
@@ -77,7 +77,7 @@ public class Librarian extends User {
 				String[] tempAddress = new String[] {"street", "City", "PC"};
 				Librarian newLib = new Librarian("Replace", user, pw, tempAddress, 0);
 				tempR.close();
-				removeRecord("TempUser", tempLine);
+				removeRecord("TempUserTest", tempLine);
 				return newLib;
 			}
 			tempLine = tempR.readLine();
