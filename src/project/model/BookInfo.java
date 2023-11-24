@@ -8,7 +8,7 @@ public class BookInfo implements Comparable<BookInfo>{
 	String publicationDate;
 	boolean available;
 	ZonedDateTime dueDate;
-	String reservedUntil;
+	ZonedDateTime reservedUntil;
 	String reservedBy;
 	String checkedOutBy;
 	
@@ -42,7 +42,7 @@ public class BookInfo implements Comparable<BookInfo>{
 		dueDate = dueDateIn;
 	}
 	
-	public void updateReservedUntil(String reservedUntilIn) {
+	public void updateReservedUntil(ZonedDateTime reservedUntilIn) {
 		reservedUntil = reservedUntilIn;
 	}
 	
@@ -50,7 +50,7 @@ public class BookInfo implements Comparable<BookInfo>{
 		return dueDate;
 	}
 	
-	public String getReservedUntil() {
+	public ZonedDateTime getReservedUntil() {
 		return reservedUntil;
 	}
 	
@@ -62,7 +62,7 @@ public class BookInfo implements Comparable<BookInfo>{
 		checkedOutBy = null;
 	}
 
-	public void setIsReserved(String dueDateIn, String userNameIn){
+	public void setIsReserved(ZonedDateTime dueDateIn, String userNameIn){
 		reservedUntil = dueDateIn;
 		reservedBy = userNameIn;
 	}
@@ -92,7 +92,7 @@ public class BookInfo implements Comparable<BookInfo>{
 		return this.dueDate.compareTo(other.dueDate);
 	}
 	//sort by user and then by dueDate if a user has multiple books checked out
-	public static class userBookComparator implements Comparator<BookInfo>{
+	public static class UserBookComparator implements Comparator<BookInfo>{
 		@Override
 		public int compare(BookInfo a, BookInfo b){
 			if(a.checkedOutBy == null && b.checkedOutBy == null){

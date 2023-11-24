@@ -56,8 +56,7 @@ public class UserMainMenuView{
 		
 		checkoutButton.setOnAction(e -> MainMenuController.checkOutABook(loggedInUser, stage, bookField.getText(), 
 				titleBookField.getText(),authorBookField.getText()));
-		//ratingButton.setOnAction(e -> MainMenuController.getBookToReview(loggedInUser, stage, bookField.getText(), 
-		//		titleBookField.getText(),authorBookField.getText()));
+		ratingButton.setOnAction(e -> RatingAndReviewView.ratingAndReviewView(loggedInUser, stage));
 		
 		Button editButton = new Button("Edit Profile");
 		editButton.setOnAction(e -> EditProfileView.editProfileView(stage, loggedInUser));

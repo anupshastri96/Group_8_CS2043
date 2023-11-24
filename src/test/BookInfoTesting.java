@@ -25,6 +25,8 @@ public class BookInfoTesting {
         assertNull(bookInfo.getReservedUntil());
         assertNull(bookInfo.getReservedUser());
     }
+    
+    
 
     @Test
     public void testBookInfoSortingByDueDate() {
