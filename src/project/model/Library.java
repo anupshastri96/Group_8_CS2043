@@ -10,13 +10,12 @@ Functions:
 package project.model;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ArrayList;
 
 public class Library {
 	private static final ArrayList<User> USER_LIST = new ArrayList<>();
-	private static final ArrayList<Book> BOOK_INVENTORY = new ArrayList<>();
+	public static final ArrayList<Book> BOOK_INVENTORY = new ArrayList<>();
 	//private static final ArrayList<Book> WAIT_LIST = new ArrayList<>();
 	
 	public Library() {}

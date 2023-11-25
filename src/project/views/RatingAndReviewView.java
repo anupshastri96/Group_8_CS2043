@@ -6,6 +6,7 @@ package project.views;
 import javafx.application.Platform;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import project.model.User;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,7 +17,7 @@ public class RatingAndReviewView{
     static Scene scene6;
     static TextField ratingField, reviewField;
 
-    public static void ratingAndReviewController(Stage stage){
+    public static void ratingAndReviewView(User loggedInUser, Stage stage){
 
         Label ratingLabel = new Label("Add Rating");
         ratingField = new TextField();
