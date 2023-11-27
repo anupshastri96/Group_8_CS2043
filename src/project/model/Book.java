@@ -1,4 +1,5 @@
 package project.model;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -9,7 +10,7 @@ public class Book implements Comparable<Book>{
 	String author;
 	String genre;
 	ArrayList<RatingsReviews> ratingsReviews = new ArrayList<>();
-	private ArrayList<BookInfo> relatedInfo = new ArrayList<>();;
+	ArrayList<BookInfo> relatedInfo = new ArrayList<>();
 	
 	public Book(String titleIn, String authorIn, String genreIn) {
 		title = titleIn;
@@ -33,7 +34,7 @@ public class Book implements Comparable<Book>{
 	
 	public static void checkOutBook(String bookId, String title, String author, User loggedInUser) {
 		Book bookToCheckOut = Library.findBook(title, author);
-		BookInfo info = findBookInfo(bookToCheckOut, bookId);
+		BookInfo info = bookToCheckOut.findBookInfo(bookToCheckOut, bookId);
 		if(info.available) {
 			info.checkedOut(loggedInUser.getUsername());
 		}
@@ -41,7 +42,7 @@ public class Book implements Comparable<Book>{
 	
 	public static void returnABook(String bookId, String title, String author) {
 		Book bookToReturn = Library.findBook(title, author);
-		BookInfo info = findBookInfo(bookToReturn, bookId);
+		BookInfo info = bookToReturn.findBookInfo(bookToReturn, bookId);
 		if(!info.available) {
 			info.returnBook();
 		}
@@ -60,7 +61,7 @@ public class Book implements Comparable<Book>{
 		return found;
 	}
 	
-	public static BookInfo findBookInfo(Book book, String bookId){
+	public BookInfo findBookInfo(Book book, String bookId){
 		Iterator<BookInfo> infoExist = book.relatedInfo.iterator();
 		while(infoExist.hasNext()){
 			BookInfo current = infoExist.next();
@@ -73,7 +74,7 @@ public class Book implements Comparable<Book>{
 	
 	public static void removeBook(String bookId, String title, String author) {
 		Book bookToRemove = Library.findBook(title, author);
-		BookInfo infoToRemove = findBookInfo(bookToRemove, bookId);
+		BookInfo infoToRemove = bookToRemove.findBookInfo(bookToRemove, bookId);
 		if(infoToRemove != null) {
 			bookToRemove.relatedInfo.remove(infoToRemove);
 		}
@@ -82,31 +83,36 @@ public class Book implements Comparable<Book>{
 		}
 	}
 	
-	public void addRating(int ratingIn, String ratedByIn) {
-		RatingsReviews ratingReview = new RatingsReviews(ratingIn, ratedByIn);
-		ratingsReviews.add(ratingReview);
+	public void addRating(int ratingIn, String ratedByIn, String title, String author) {
+		Book bookToRate = Library.findBook(title, author);
+		RatingsReviews newRating = new RatingsReviews(ratingIn, ratedByIn);
+		bookToRate.ratingsReviews.add(newRating);
 	}
+		
 	
-	public void addReview(int ratingIn, String reviewIn, String ratedByIn) {
+	public void addReview(int ratingIn, String reviewIn, String ratedByIn, String title, String author) {
+		Book bookToRev = Library.findBook(title, author);
 		RatingsReviews ratingReview = new RatingsReviews(ratingIn, reviewIn, ratedByIn);
-		ratingsReviews.add(ratingReview);
+		bookToRev.ratingsReviews.add(ratingReview);
 	}
 	
-	public double avgRating() {
-		if(ratingsReviews.isEmpty()) {
-			return 0.0;
-		}
+	public float avgRating() {
 		int totalRating = 0;
-		for(RatingsReviews ratingReview : ratingsReviews) {
-			totalRating += ratingReview.getRating();
+		Iterator<RatingsReviews> nextRev = ratingsReviews.iterator();
+		while(nextRev.hasNext()) {
+			RatingsReviews current = nextRev.next();
+			totalRating += current.getRating();
 		}
-		return (double) totalRating/ratingsReviews.size();
+		float avg = (float)totalRating/ratingsReviews.size();
+		return avg;
 	}
 
 	public int getRatingByUser(String ratedBy){
-		for(RatingsReviews ratingReview: ratingsReviews){
-			if(ratedBy.equals(ratingReview.getRatedBy())){
-				return ratingReview.getRating();
+		Iterator<RatingsReviews> nextRev = ratingsReviews.iterator();
+		while(nextRev.hasNext()) {
+			RatingsReviews current = nextRev.next();
+			if(ratedBy.equals(current.getRatedBy())){
+				return current.getRating();
 			}
 		}
 		return -1;
@@ -132,53 +138,6 @@ public class Book implements Comparable<Book>{
 		return ratingsReviews;
 	}
 	
-	//Sort automatically by title alphabetically
-	@Override
-	public int compareTo(Book other){
-		return this.title.compareTo(other.title);
-	}
-
-	//Sorting by Author
-	public static class AuthorComparator implements Comparator<Book>{
-		@Override
-		public int compare(Book a, Book b){
-			if(a.author != null && b.author != null){
-				return a.author.compareTo(b.author);
-			}
-			return a.title.compareTo(b.title);
-		}
-	}
-
-	//Sorting by genre
-	public static class GenreComparator implements Comparator<Book>{
-		@Override
-		public int compare(Book a, Book b){
-			if(a.genre != null && b.genre != null){
-				if(a.genre.equals(b.genre)){
-					return a.title.compareTo(b.title);
-				}
-				return a.genre.compareTo(b.genre);
-			}
-			return a.title.compareTo(b.title);
-		}
-	}
-
-	//Sorting by availabilty
-	public static class AvailabilityComparator implements Comparator<Book>{
-		@Override
-		public int compare(Book a, Book b){
-			int i = Boolean.compare(a.checkAvailability(a.title, b.author), b.checkAvailability(b.title, b.author)); //sort by availability
-			if(i != 0){
-				return i;
-			}
-			int j = a.author.compareTo(b.author); //if same sort by author
-			if(j != 0){
-				return j;
-			}
-			return a.title.compareTo(b.title); //if same sort by title
-		}
-	}
-
 	public void printBook(){
 		System.out.println("Title: " + title + " | Author: " + author + " | Genre: " + genre + " | Average Rating: " + avgRating());
 	}
@@ -192,4 +151,56 @@ public class Book implements Comparable<Book>{
 			System.out.println("----------------------------------");
 		}
 	}
-}		
+			
+	@Override
+	public int compareTo(Book other){
+		return this.title.compareTo(other.title);
+	}
+	
+	public static class AuthorComparator implements Comparator<Book>{
+		@Override
+		public int compare(Book a, Book b){
+			if(a.author != null && b.author != null){
+				return a.author.compareTo(b.author);
+			}
+			return a.title.compareTo(b.title);
+		}
+	}
+		
+	public static class GenreComparator implements Comparator<Book>{
+		@Override
+		public int compare(Book a, Book b){
+			if(a.genre != null && b.genre != null){
+				if(a.genre.equals(b.genre)){
+					return a.title.compareTo(b.title);
+				}
+				return a.genre.compareTo(b.genre);
+			}
+			return a.title.compareTo(b.title);
+		}
+	}
+
+	public static class AvailabilityComparator implements Comparator<Book>{
+		@Override
+		public int compare(Book a, Book b){
+			int i = Boolean.compare(a.checkAvailability(a.title, b.author), b.checkAvailability(b.title, b.author)); //sort by availability
+			if(i != 0){
+				return i;
+			}
+			int j = a.author.compareTo(b.author); 
+			if(j != 0){
+				return j;
+			}
+			return a.title.compareTo(b.title); 
+		}
+	}
+	
+	public static class RatingsComparator implements Comparator<Book>{
+		
+		@Override
+		public int compare(Book a, Book b){
+			int i = BigDecimal.valueOf(a.avgRating()).compareTo(BigDecimal.valueOf(b.avgRating())); 
+			return i;
+		}
+	}
+}

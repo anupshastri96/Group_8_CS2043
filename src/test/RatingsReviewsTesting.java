@@ -1,12 +1,12 @@
 package test;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
-
 import project.model.RatingsReviews;
 
 public class RatingsReviewsTesting {
-
+	
     @Test
     public void testRatingsReviews() {
         RatingsReviews ratingReview = new RatingsReviews(4, "Good book", "User1");
