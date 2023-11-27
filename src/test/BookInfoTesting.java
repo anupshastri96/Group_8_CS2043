@@ -1,11 +1,8 @@
 package test;
 
 import static org.junit.Assert.*;
-
 import java.time.ZonedDateTime;
-
 import org.junit.Test;
-
 import project.model.BookInfo;
 
 public class BookInfoTesting {
