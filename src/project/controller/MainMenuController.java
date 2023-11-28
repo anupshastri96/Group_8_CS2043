@@ -12,6 +12,7 @@ package project.controller;
 import javafx.stage.Stage;
 import project.model.Book;
 import project.model.Librarian;
+import project.model.Library;
 import project.model.Patron;
 import project.model.User;
 import project.views.LibrarianMainMenuView;
@@ -22,11 +23,13 @@ public class MainMenuController {
 	public static void addBook(User loggedInUser, Stage stage, String titleIn, String authorIn, String genreIn, String bookIdIn, String publicationDateIn) {
 		Book.addNewBook(titleIn, authorIn, genreIn, bookIdIn, publicationDateIn);
 		LibrarianMainMenuView.librarianMainMenuView(stage, loggedInUser);
+		Library.printBookList();
 	}
 	
 	public static void removeBook(User loggedInUser, Stage stage, String bookId, String author, String title) {
 		Book.removeBook(bookId, author, title);
 		LibrarianMainMenuView.librarianMainMenuView(stage, loggedInUser);
+		Library.printBookList();
 	}
 	
 	public static void checkOutABook(User loggedInUser, Stage stage, String bookId, String author, String title) {

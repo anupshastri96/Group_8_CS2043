@@ -2,7 +2,7 @@
 
 package project.views;
 
-import project.controller.RatingAndReviewController; //im assuming it will be called that
+//import project.controller.RatingAndReviewController; //im assuming it will be called that
 import javafx.application.Platform;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,7 +26,7 @@ public class RatingAndReviewView{
         reviewField = new TextField();
 	String review = reviewField.getText();
         Button submitButton = new Button("Submit");
-        submitButton.setOnAction(e -> RatingAndReviewController.submit(rating, review)); // new controller
+        //submitButton.setOnAction(e -> RatingAndReviewController.submit(rating, review)); // new controller
 
         Button logoutButton = new Button("Log Out");
 		logoutButton.setOnAction(e -> Platform.exit());
