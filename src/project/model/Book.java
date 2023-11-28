@@ -98,12 +98,18 @@ public class Book implements Comparable<Book>{
 	
 	public float avgRating() {
 		int totalRating = 0;
+		float avg = 0;
 		Iterator<RatingsReviews> nextRev = ratingsReviews.iterator();
 		while(nextRev.hasNext()) {
 			RatingsReviews current = nextRev.next();
 			totalRating += current.getRating();
 		}
-		float avg = (float)totalRating/ratingsReviews.size();
+		if(ratingsReviews.size() == 0) {
+			avg = -1;
+		}
+		else if (ratingsReviews.size() > 0) {
+			avg = (float)totalRating/ratingsReviews.size();
+		}
 		return avg;
 	}
 
@@ -143,9 +149,17 @@ public class Book implements Comparable<Book>{
 	}
 
 	public void printBookRating(){
+		String printRating = "";
+		Float avgRating = avgRating();
+		if(avgRating < 0 ) {
+			printRating = "     Rating: No rating";  
+		}
+		else if (avgRating >= 0) {
+			printRating = "     Rating: " + avgRating;
+		}
 		System.out.println("Ratings and Reviews for " + title + ":");
 		for(RatingsReviews ratingReview : ratingsReviews){
-			System.out.println("	Rating: " + ratingReview.getRating());
+			System.out.println(printRating);
 			System.out.println("	Review: " + ratingReview.getReview());
 			System.out.println("	Rated By: " + ratingReview.getRatedBy());
 			System.out.println("----------------------------------");
@@ -198,9 +212,14 @@ public class Book implements Comparable<Book>{
 	public static class RatingsComparator implements Comparator<Book>{
 		
 		@Override
-		public int compare(Book a, Book b){
-			int i = BigDecimal.valueOf(a.avgRating()).compareTo(BigDecimal.valueOf(b.avgRating())); 
-			return i;
+		public int compare(Book a, Book b) {
+			if(a.avgRating() > b.avgRating()) {
+				return -1;
+			}
+			else if(a.avgRating() < b.avgRating()) {
+				return 1;
+			}
+			return 0;			
 		}
 	}
 }

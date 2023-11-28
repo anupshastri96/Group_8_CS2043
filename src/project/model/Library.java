@@ -135,14 +135,22 @@ public class Library {
 
 	public static void printRecommendations(String userNameIn, ArrayList<Book> rIn){//r stands for recommendation
 		System.out.println("\nHi " + userNameIn + ", here are some recommendations for you!");
-		Iterator<Book> nextBook = BOOK_INVENTORY.iterator();
+		Iterator<Book> nextBook = rIn.iterator();
 		Book r;
+		String printRating = "";
 		while(nextBook.hasNext()) {
 			r = nextBook.next();
+			Float avgRating = r.avgRating();
+			if(avgRating < 0 ) {
+				printRating = "     Rating: No rating";  
+			}
+			else if (avgRating >= 0) {
+				printRating = "     Rating: " + avgRating;
+			}
 				System.out.println("	Title: " + r.getTitle());
 				System.out.println("	Author: " + r.getAuthor());
 				System.out.println("	Genre: " + r.getGenre());
-				System.out.println("	Rating: " + r.avgRating());
+				System.out.println(printRating);
 				System.out.println("-------------------------------");
 		}
 	}
