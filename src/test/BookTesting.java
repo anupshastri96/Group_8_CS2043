@@ -92,13 +92,9 @@ public class BookTesting {
 		Patron userPatron = new Patron("NewUser", "User1", "password", updateAddress, 0);
 		Book.checkOutBook("bkID1", "OneTitle", "One Author", userPatron);
 		Book book1 = Library.findBook("OneTitle", "One Author");
-		//BookInfo info1 = book1.findBookInfo(book1, "bkID1");
 		Book book2 = Library.findBook("TwoTitle", "Two Author");
-		//BookInfo info2 = book1.findBookInfo(book2, "bkID2");
 		Book book3 = Library.findBook("ThreeTitle", "AThree Author");
-		//BookInfo info3 = book1.findBookInfo(book3, "bkID3");
 		Book book4 = Library.findBook("FourTitle", "ZFour Author");
-		//BookInfo info4 = book4.findBookInfo(book4, "bkID4");
 		
 		book1.addRating(5, "User1","OneTitle", "One Author");
 		book1.addRating(5, "User2","OneTitle", "One Author");

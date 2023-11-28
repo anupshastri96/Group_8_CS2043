@@ -52,8 +52,8 @@ public class LibrarianMainMenuView{
                 "-fx-border-style: solid;\n";   
 		bookLayout.setStyle(cssLayout);
 		bookLayout.getChildren().addAll(addBookLabel, addBookBox, addBookButton);
-		addButton.setOnAction(e -> MainMenuController.addBook(loggedInUser, stage, titleField.getText(), author.getText(), 
-				genre.getText(), bookIdField.getText(), pubDateField.getText()));
+		addButton.setOnAction(e -> MainMenuController.addBook(loggedInUser, stage, titleField.getText(), authorField.getText(), 
+				genreField.getText(), bookIdField.getText(), pubDateField.getText()));
 		
 		Button lookUpButton = new Button("Look Up a User");
 		//lookUpButton.setOnAction(e -> //mainMenu controller -> prints user info); //new controller

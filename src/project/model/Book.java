@@ -1,5 +1,4 @@
 package project.model;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -145,11 +144,21 @@ public class Book implements Comparable<Book>{
 	}
 	
 	public void printBook(){
-		System.out.println("Title: " + title + " | Author: " + author + " | Genre: " + genre + " | Average Rating: " + avgRating());
+		String printRating = "";
+		Float avgRating = avgRating();
+		if(avgRating < 0 ) {
+			printRating = "Rating: No rating";  
+		}
+		else if (avgRating >= 0) {
+			printRating = "Rating: " + avgRating;
+		}
+		System.out.println("Title: " + title + " | Author: " + author + " | Genre: " + genre + " | Average " + printRating);
 	}
 
 	public void printBookRating(){
 		String printRating = "";
+		System.out.println("Ratings and Reviews for " + title + ":");
+		for(RatingsReviews ratingReview : ratingsReviews){
 		Float avgRating = avgRating();
 		if(avgRating < 0 ) {
 			printRating = "     Rating: No rating";  
@@ -157,8 +166,6 @@ public class Book implements Comparable<Book>{
 		else if (avgRating >= 0) {
 			printRating = "     Rating: " + avgRating;
 		}
-		System.out.println("Ratings and Reviews for " + title + ":");
-		for(RatingsReviews ratingReview : ratingsReviews){
 			System.out.println(printRating);
 			System.out.println("	Review: " + ratingReview.getReview());
 			System.out.println("	Rated By: " + ratingReview.getRatedBy());
